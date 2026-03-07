@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This repository is configured with the Codex Context Kit.
+This repository is configured with Memento Kit.
 
 ## Project Info
 

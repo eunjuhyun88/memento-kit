@@ -59,7 +59,7 @@ Example flow:
 mkdir my-sample
 cd my-sample
 git init
-bash /path/to/codex-context-kit/setup.sh \
+bash /path/to/memento-kit/setup.sh \
   --target . \
   --project-name SampleKit \
   --summary "Sample repo for validation" \

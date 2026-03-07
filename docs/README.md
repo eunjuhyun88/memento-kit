@@ -1,4 +1,4 @@
-# Codex Context Kit Docs
+# Memento Kit Docs
 
 This folder documents the kit itself, not the docs that get installed into a target repository.
 

@@ -1,6 +1,6 @@
-# Codex Context Kit Manual
+# Memento Kit Manual
 
-이 문서는 `codex-context-kit`를 다른 사람에게 넘길 때 같이 주는 가장 짧은 사용 메뉴얼이다.
+이 문서는 `memento-kit`를 다른 사람에게 넘길 때 같이 주는 가장 짧은 사용 메뉴얼이다.
 
 ## 1. 이게 하는 일
 
@@ -27,7 +27,7 @@
 기존 repo 또는 새 repo에서 아래처럼 실행한다.
 
 ```bash
-bash /absolute/path/to/codex-context-kit/setup.sh \
+bash /absolute/path/to/memento-kit/setup.sh \
   --target . \
   --project-name MyProject \
   --summary "한 줄 설명" \
@@ -41,7 +41,7 @@ bash /absolute/path/to/codex-context-kit/setup.sh \
 mkdir my-project
 cd my-project
 git init
-bash /Users/ej/Downloads/codex-context-kit/setup.sh \
+bash /Users/ej/Downloads/memento-kit/setup.sh \
   --target . \
   --project-name MyProject \
   --summary "AI-friendly project"
@@ -172,7 +172,7 @@ npm run eval:ab:refresh
 보통은 아래 두 개만 주면 된다.
 
 - 이 메뉴얼: `MANUAL_KO.md`
-- 압축 파일: `codex-context-kit.zip`
+- 압축 파일: `memento-kit.zip`
 
 압축을 푼 뒤 상대방은:
 

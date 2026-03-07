@@ -1,4 +1,6 @@
-# Codex Context Kit
+# Memento Kit
+
+Agent Context Engineering Kit
 
 Reusable bootstrap kit for turning a repository into an agent-first workspace with:
 
@@ -96,7 +98,7 @@ Example target config:
 Apply into the current repo:
 
 ```bash
-bash /path/to/codex-context-kit/setup.sh \
+bash /path/to/memento-kit/setup.sh \
   --target . \
   --project-name MyProject \
   --summary "One-line product summary" \
@@ -110,7 +112,7 @@ Or create a new target first:
 mkdir my-project
 cd my-project
 git init
-bash /path/to/codex-context-kit/setup.sh \
+bash /path/to/memento-kit/setup.sh \
   --target . \
   --project-name MyProject \
   --summary "One-line product summary"
