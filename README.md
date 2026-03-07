@@ -46,6 +46,7 @@ It now also includes:
 
 If you want the kit itself fully documented, start here:
 
+- `POST_INSTALL_CHECKLIST.md`
 - `MANUAL_KO.md`
 - `POST_INSTALL_CHECKLIST_KO.md`
 - `docs/README.md`
