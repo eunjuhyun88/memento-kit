@@ -35,6 +35,16 @@ bash /absolute/path/to/memento-kit/setup.sh \
   --surfaces core,admin,api
 ```
 
+더 간단한 한 줄 설치:
+
+```bash
+bash /absolute/path/to/memento-kit/install.sh \
+  --project-name MyProject \
+  --summary "한 줄 설명" \
+  --stack "TypeScript / SvelteKit" \
+  --surfaces core,admin,api
+```
+
 예시:
 
 ```bash

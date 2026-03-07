@@ -13,8 +13,8 @@ node scripts/dev/refresh-context-registry.mjs --check
 node scripts/dev/refresh-context-ab-report.mjs --check
 node scripts/dev/refresh-sandbox-policy-report.mjs --check
 node scripts/dev/refresh-doc-governance.mjs --check
-node scripts/dev/refresh-context-metrics.mjs --check
 node scripts/dev/refresh-context-value-demo.mjs --check
+node scripts/dev/refresh-context-metrics.mjs --check
 
 FAIL=0
 

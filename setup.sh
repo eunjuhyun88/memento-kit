@@ -683,6 +683,7 @@ if command -v node >/dev/null 2>&1; then
 			node scripts/dev/refresh-context-ab-report.mjs
 			node scripts/dev/refresh-sandbox-policy-report.mjs
 			node scripts/dev/refresh-doc-governance.mjs
+			node scripts/dev/refresh-context-value-demo.mjs
 			node scripts/dev/refresh-context-metrics.mjs
 		)
 else

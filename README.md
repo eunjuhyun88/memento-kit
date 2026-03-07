@@ -106,6 +106,16 @@ bash /path/to/memento-kit/setup.sh \
   --surfaces core,admin,api
 ```
 
+One-line install with post-setup verification:
+
+```bash
+bash /path/to/memento-kit/install.sh \
+  --project-name MyProject \
+  --summary "One-line product summary" \
+  --stack "SvelteKit / TypeScript / Python" \
+  --surfaces core,admin,api
+```
+
 Or create a new target first:
 
 ```bash
