@@ -12,6 +12,7 @@
 - canonical docs 구조: `docs/`
 - generated context maps: route/store/API map
 - semantic resume 도구: checkpoint / brief / handoff
+- git workflow 규칙 + repo-local git config bootstrap
 - registry / retrieval / agent / tool catalog
 - context value 보고서와 검증 스크립트
 - skeleton docs를 실제 프로젝트 진실에 가깝게 끌어오는 bootstrap 가이드
@@ -62,6 +63,7 @@ bash /Users/ej/Downloads/memento-kit/setup.sh \
 
 ```bash
 npm run safe:hooks
+npm run safe:git-config
 npm run adopt:bootstrap
 npm run docs:refresh
 npm run docs:check

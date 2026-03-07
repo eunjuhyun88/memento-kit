@@ -697,6 +697,10 @@ fi
 
 if git -C "$TARGET_DIR" rev-parse --show-toplevel >/dev/null 2>&1; then
 	git -C "$TARGET_DIR" config core.hooksPath .githooks || true
+	(
+		cd "$TARGET_DIR"
+		bash scripts/dev/bootstrap-git-config.sh || true
+	)
 	echo "[setup] configured git hooks path: .githooks"
 fi
 

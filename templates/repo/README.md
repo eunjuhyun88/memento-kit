@@ -41,7 +41,8 @@ The goal is not to read more files. The goal is to read the right files first.
 8. Agent runtime telemetry: `docs/AGENT_OBSERVABILITY.md`
 9. Open-source platform layers: `docs/CONTEXT_PLATFORM.md`, `docs/SANDBOX_POLICY.md`
 10. Parallel-agent ownership and handoff: `docs/MULTI_AGENT_COORDINATION.md`
-11. Stable canonical entry docs:
+11. Git operating rules: `docs/GIT_WORKFLOW.md`
+12. Stable canonical entry docs:
    - `docs/DESIGN.md`
    - `docs/ENGINEERING.md`
    - `docs/PLANS.md`
@@ -56,6 +57,7 @@ The goal is not to read more files. The goal is to read the right files first.
 
 ```bash
 npm run safe:hooks
+npm run safe:git-config
 npm run docs:refresh
 npm run docs:check
 npm run safe:status
@@ -78,7 +80,15 @@ npm run safe:status
 - `npm run coord:check`
 - `npm run coord:release`
 
-## 3.2) Platform Commands
+## 3.2) Git Commands
+
+- `npm run safe:git-config`
+- `npm run safe:status`
+- `npm run safe:worktree -- <task-name> [base-branch]`
+- `npm run safe:sync`
+- `npm run safe:sync:gate`
+
+## 3.3) Platform Commands
 
 - `npm run agent:refresh`
 - `npm run agent:new -- --id "<agent-id>" --role "<role>" --surface "<surface>"`
@@ -134,6 +144,7 @@ Project-specific truth for this kit lives in:
 - `docs/TOOL_DESIGN.md`
 - `docs/AGENT_OBSERVABILITY.md`
 - `docs/MULTI_AGENT_COORDINATION.md`
+- `docs/GIT_WORKFLOW.md`
 - `docs/SANDBOX_POLICY.md`
 - `agents/*.json`
 - `tools/*.json`

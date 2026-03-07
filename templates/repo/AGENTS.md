@@ -13,16 +13,17 @@ This file defines mandatory execution rules for coding agents in `__PROJECT_NAME
 7. If the task creates or changes reusable tools, open `docs/TOOL_DESIGN.md` and `tools/README.md`.
 8. If the task needs measured runtime evidence or time-saved tracking, open `docs/AGENT_OBSERVABILITY.md`.
 9. If the task affects registry/API, public evaluation, or safety boundaries, open `docs/CONTEXT_PLATFORM.md` and `docs/SANDBOX_POLICY.md`.
-10. Run `git status --short --branch`.
-11. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
-12. On feature branches, create or refresh a coordination claim:
+10. If the task involves branching, syncing, worktrees, or merge discipline, open `docs/GIT_WORKFLOW.md`.
+11. Run `git status --short --branch`.
+12. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
+13. On feature branches, create or refresh a coordination claim:
    - `npm run coord:claim -- --work-id "<W-ID>" --agent "<agent>" --surface "<surface>" --summary "<summary>" --path "<prefix>"`
    - do not start meaningful edits on a feature branch without at least one claimed path prefix
-13. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
-14. Run `npm run safe:status`.
-15. For non-trivial work, create a semantic checkpoint:
+14. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
+15. Run `npm run safe:status`.
+16. For non-trivial work, create a semantic checkpoint:
    - `npm run ctx:checkpoint -- --work-id "<W-ID>" --surface "<surface>" --objective "<objective>"`
-16. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
+17. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
 
 ## Mandatory Validation Gate
 

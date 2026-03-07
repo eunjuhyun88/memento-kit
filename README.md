@@ -17,6 +17,7 @@ Reusable bootstrap kit for turning a repository into an agent-first workspace wi
 - contextual retrieval index + query API
 - routed-vs-baseline task comparison recording
 - sandbox policy validation and reporting
+- git workflow rules and repo-local git config bootstrap
 - git hooks that enforce context discipline
 - push-time coordination checks for parallel agent work
 
@@ -137,6 +138,7 @@ bash /path/to/memento-kit/setup.sh \
 4. Install hooks:
    ```bash
    npm run safe:hooks
+   npm run safe:git-config
    ```
 5. Generate derived docs:
    ```bash

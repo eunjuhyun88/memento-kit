@@ -19,8 +19,9 @@ Purpose:
 9. `docs/AGENT_OBSERVABILITY.md`
 10. `docs/CONTEXT_PLATFORM.md`
 11. `docs/MULTI_AGENT_COORDINATION.md`
-12. `ARCHITECTURE.md`
-13. Relevant canonical docs from `docs/`
+12. `docs/GIT_WORKFLOW.md`
+13. `ARCHITECTURE.md`
+14. Relevant canonical docs from `docs/`
 
 ## System Map
 
@@ -51,6 +52,7 @@ Example:
 - Agent runtime telemetry rules: `docs/AGENT_OBSERVABILITY.md`
 - Context platform and discovery rules: `docs/CONTEXT_PLATFORM.md`
 - Parallel-agent ownership rules: `docs/MULTI_AGENT_COORDINATION.md`
+- Git workflow and sync rules: `docs/GIT_WORKFLOW.md`
 - Reliability boundaries: `docs/RELIABILITY.md`
 - Security boundaries: `docs/SECURITY.md`, `docs/SANDBOX_POLICY.md`
 - Harness and legibility evidence: `docs/HARNESS.md`

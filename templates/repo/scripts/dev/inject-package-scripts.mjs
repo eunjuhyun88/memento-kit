@@ -15,6 +15,7 @@ const scripts = {
   'safe:status': 'bash scripts/dev/safe-status.sh',
   'safe:worktree': 'bash scripts/dev/new-worktree.sh',
   'safe:hooks': 'bash scripts/dev/install-git-hooks.sh',
+  'safe:git-config': 'bash scripts/dev/bootstrap-git-config.sh',
   'safe:sync': 'bash scripts/dev/sync-branch.sh',
   'safe:sync:gate': 'bash scripts/dev/sync-branch.sh --gate',
   'ctx:save': 'bash scripts/dev/context-save.sh',
