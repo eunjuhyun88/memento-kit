@@ -24,6 +24,7 @@ const scripts = {
   'ctx:restore': 'bash scripts/dev/context-restore.sh',
   'ctx:pin': 'bash scripts/dev/context-pin.sh',
   'ctx:auto': 'bash scripts/dev/context-auto.sh',
+  'adopt:bootstrap': 'node scripts/dev/bootstrap-project-truth.mjs',
   'coord:claim': 'node scripts/dev/claim-work.mjs',
   'coord:list': 'node scripts/dev/list-work-claims.mjs',
   'coord:check': 'node scripts/dev/check-agent-coordination.mjs',

@@ -14,6 +14,7 @@
 - semantic resume 도구: checkpoint / brief / handoff
 - registry / retrieval / agent / tool catalog
 - context value 보고서와 검증 스크립트
+- skeleton docs를 실제 프로젝트 진실에 가깝게 끌어오는 bootstrap 가이드
 
 핵심 목적은 이것이다.
 
@@ -61,6 +62,7 @@ bash /Users/ej/Downloads/memento-kit/setup.sh \
 
 ```bash
 npm run safe:hooks
+npm run adopt:bootstrap
 npm run docs:refresh
 npm run docs:check
 ```
@@ -73,6 +75,18 @@ npm run docs:check
 - `ARCHITECTURE.md`
 - `docs/SYSTEM_INTENT.md`
 - `docs/product-specs/*.md`
+
+설치 직후 이 보고서를 먼저 본다.
+
+- `docs/generated/project-truth-bootstrap.md`
+
+이 보고서는:
+
+- 자동으로 채운 route/store/api 매핑
+- 아직 비어 있는 문서
+- 다음에 채워야 할 정본 문서 순서
+
+를 보여준다.
 
 원칙은 간단하다.
 
@@ -136,6 +150,7 @@ npm run value:demo
 생성되는 보고서:
 
 - `docs/generated/context-value-demo.md`
+- `docs/generated/project-truth-bootstrap.md`
 
 이 보고서에서 봐야 하는 것은:
 
@@ -143,6 +158,7 @@ npm run value:demo
 - 코드 스캔 전에 routes / stores / APIs가 보이는지
 - spec alignment가 맞는지
 - checkpoint / harness가 있는지
+- skeleton docs에 무엇을 채워야 하는지
 
 ## 6. 시간이 실제로 아껴졌는지 보는 방법
 
@@ -187,9 +203,10 @@ npm run eval:ab:refresh
 압축을 푼 뒤 상대방은:
 
 1. `setup.sh` 실행
-2. `npm run docs:refresh`
-3. `npm run docs:check`
-4. `npm run value:demo`
+2. `npm run adopt:bootstrap`
+3. `npm run docs:refresh`
+4. `npm run docs:check`
+5. `npm run value:demo`
 
 이 4단계만 해도 kit가 실제로 동작하는지 확인할 수 있다.
 

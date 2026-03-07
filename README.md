@@ -34,6 +34,7 @@ It now also includes:
 - a generated `agent-usage-report.md` + `agent-usage-report.json`
 - a generated `context-ab-report.md`
 - a generated `sandbox-policy-report.md`
+- a generated `project-truth-bootstrap.md`
 - a repeated `harness:benchmark` runtime/noise benchmark
 - a `MULTI_AGENT_COORDINATION.md` coordination layer in installed repos
 - a `CONTEXT_PLATFORM.md` + `SANDBOX_POLICY.md` layer for open-source discovery and execution boundaries
@@ -131,28 +132,31 @@ bash /path/to/memento-kit/setup.sh \
 ## After Setup
 
 1. Review `context-kit.json`
-2. Fill in the canonical docs with project-specific truth
-3. Install hooks:
+2. Review `docs/generated/project-truth-bootstrap.md`
+3. Fill in the canonical docs with project-specific truth
+4. Install hooks:
    ```bash
    npm run safe:hooks
    ```
-4. Generate derived docs:
+5. Generate derived docs:
    ```bash
+   npm run adopt:bootstrap
    npm run docs:refresh
    npm run docs:check
    ```
-5. Validate the context system in two layers:
+6. Validate the context system in two layers:
    ```bash
    npm run harness:benchmark -- --base-url http://localhost:4173
    ```
    Read:
+   - `docs/generated/project-truth-bootstrap.md`
    - `docs/generated/context-efficiency-report.md`
    - `docs/generated/contextual-retrieval.md`
    - `docs/generated/context-ab-report.md`
    - `docs/generated/context-registry.md`
    - `docs/generated/sandbox-policy-report.md`
    - `.agent-context/evaluations/<run-id>/summary.md`
-6. Try the discovery and safety surfaces:
+7. Try the discovery and safety surfaces:
    ```bash
    npm run agent:start -- --agent planner --surface core
    npm run agent:event -- --type doc_open --path docs/PLANS.md
@@ -168,7 +172,7 @@ bash /path/to/memento-kit/setup.sh \
    npm run value:demo
    npm run sandbox:check
    ```
-7. Record at least one routed-vs-baseline comparison:
+8. Record at least one routed-vs-baseline comparison:
    ```bash
    npm run eval:ab:record -- \
      --task-id "TASK-001" \
@@ -179,7 +183,7 @@ bash /path/to/memento-kit/setup.sh \
      --baseline-minutes 6
    npm run eval:ab:refresh
    ```
-8. For parallel work, claim explicit ownership before edits:
+9. For parallel work, claim explicit ownership before edits:
    ```bash
    npm run coord:claim -- \
      --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" \
@@ -189,7 +193,7 @@ bash /path/to/memento-kit/setup.sh \
      --path "src/routes/core"
    ```
    Feature branches should claim at least one explicit path boundary.
-9. Start using semantic checkpoints:
+10. Start using semantic checkpoints:
    ```bash
    npm run ctx:checkpoint -- \
      --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" \

@@ -154,6 +154,7 @@ REQUIRED_FILES=(
 	"docs/generated/context-ab-report.md"
 	"docs/generated/sandbox-policy-report.md"
 	"docs/generated/context-value-demo.md"
+	"docs/generated/project-truth-bootstrap.md"
 	"docs/generated/route-map.md"
 	"docs/generated/store-authority-map.md"
 	"docs/generated/api-group-map.md"
@@ -169,6 +170,7 @@ REQUIRED_FILES=(
 	"scripts/dev/context-restore.sh"
 	"scripts/dev/context-pin.sh"
 	"scripts/dev/context-auto.sh"
+	"scripts/dev/bootstrap-project-truth.mjs"
 	"scripts/dev/coordination-lib.mjs"
 	"scripts/dev/claim-work.mjs"
 	"scripts/dev/list-work-claims.mjs"
@@ -345,6 +347,7 @@ require_text "docs/generated/context-registry.md" "# Context Registry" "context 
 require_text "docs/generated/context-ab-report.md" "# Context A/B Report" "context ab report heading"
 require_text "docs/generated/sandbox-policy-report.md" "# Sandbox Policy Report" "sandbox policy report heading"
 require_text "docs/generated/context-value-demo.md" "# Context Value Demo" "context value demo heading"
+require_text "docs/generated/project-truth-bootstrap.md" "# Project Truth Bootstrap" "project truth bootstrap heading"
 
 require_max_lines "AGENTS.md" 140
 require_max_lines "ARCHITECTURE.md" 120

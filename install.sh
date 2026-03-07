@@ -91,6 +91,12 @@ if [ "$SKIP_HOOKS" -ne 1 ]; then
 	)
 fi
 
+echo "[install] running npm run adopt:bootstrap"
+(
+	cd "$TARGET_DIR"
+	npm run adopt:bootstrap
+)
+
 if [ "$SKIP_VERIFY" -ne 1 ]; then
 	echo "[install] running npm run docs:refresh"
 	(

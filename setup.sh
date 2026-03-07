@@ -598,11 +598,11 @@ for index, surface in enumerate(surfaces):
                     f"- Surface ID: `{surface}`",
                     "",
                     "## Purpose",
-                    f"Explain the user-facing value and system role of `{surface}` here.",
+                    f"Replace this placeholder with the real user-facing value and system role of `{surface}`.",
                     "",
                     "## Done Means",
-                    "- Define measurable outcomes for this surface.",
-                    "- Define the boundaries this surface must not violate.",
+                    "- Replace this with measurable outcomes for this surface.",
+                    "- Replace this with the boundaries this surface must not violate.",
                     "",
                     "## Context Contracts",
                     "",
@@ -683,6 +683,11 @@ if command -v node >/dev/null 2>&1; then
 			node scripts/dev/refresh-context-ab-report.mjs
 			node scripts/dev/refresh-sandbox-policy-report.mjs
 			node scripts/dev/refresh-doc-governance.mjs
+			node scripts/dev/bootstrap-project-truth.mjs
+			node scripts/dev/refresh-generated-context.mjs
+			node scripts/dev/refresh-context-retrieval.mjs
+			node scripts/dev/refresh-context-registry.mjs
+			node scripts/dev/refresh-doc-governance.mjs
 			node scripts/dev/refresh-context-value-demo.mjs
 			node scripts/dev/refresh-context-metrics.mjs
 		)
@@ -699,6 +704,7 @@ echo ""
 echo "Context kit applied to: $TARGET_DIR"
 echo "Next steps:"
 echo "  1. Review context-kit.json"
-echo "  2. Fill canonical docs with repo-specific truth"
-echo "  3. Run: cd \"$TARGET_DIR\" && npm run docs:refresh && npm run docs:check"
-echo "  4. Run: cd \"$TARGET_DIR\" && npm run safe:hooks"
+echo "  2. Read docs/generated/project-truth-bootstrap.md and fill canonical docs with repo-specific truth"
+echo "  3. Run: cd \"$TARGET_DIR\" && npm run adopt:bootstrap"
+echo "  4. Run: cd \"$TARGET_DIR\" && npm run docs:refresh && npm run docs:check"
+echo "  5. Run: cd \"$TARGET_DIR\" && npm run safe:hooks"
