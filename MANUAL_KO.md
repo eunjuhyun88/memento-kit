@@ -200,6 +200,7 @@ npm run eval:ab:refresh
 보통은 아래 두 개만 주면 된다.
 
 - 이 메뉴얼: `MANUAL_KO.md`
+- 설치 후 체크리스트: `POST_INSTALL_CHECKLIST_KO.md`
 - 압축 파일: `memento-kit.zip`
 
 압축을 푼 뒤 상대방은:
