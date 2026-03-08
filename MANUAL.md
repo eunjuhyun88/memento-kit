@@ -9,6 +9,7 @@ This kit turns a repository into a repo that agents can enter, resume, validate,
 After installation, you get:
 
 - short entry docs: `README.md`, `AGENTS.md`, `ARCHITECTURE.md`
+- a concise `CLAUDE.md` plus Claude-native `.claude/` compatibility layer
 - a canonical `docs/` structure
 - generated route/store/API maps
 - semantic resume tools: checkpoint / brief / handoff
@@ -16,6 +17,8 @@ After installation, you get:
 - registry / retrieval / agent / tool catalogs
 - value and validation reports
 - a bootstrap guide for turning skeleton docs into project truth
+- an optional separate memory workspace for agent identity and long-term memory
+- an optional separate runtime workspace for session boot, nightly distill, memory indexing, and cross-agent relay
 
 Core purpose:
 
@@ -45,6 +48,27 @@ bash /absolute/path/to/memento-kit/install.sh \
   --summary "One-line summary" \
   --stack "TypeScript / SvelteKit" \
   --surfaces core,admin,api
+```
+
+Optional memory workspace bootstrap:
+
+```bash
+bash /absolute/path/to/memento-kit/setup-memory.sh \
+  --target ./zeon-workspace \
+  --agent-name Zeon \
+  --agent-role "orchestrator" \
+  --user-name "Simon"
+```
+
+Optional runtime workspace bootstrap:
+
+```bash
+bash /absolute/path/to/memento-kit/setup-runtime.sh \
+  --target ./zeon-runtime \
+  --agent-name Zeon \
+  --core-repo /absolute/path/to/project-repo \
+  --memory-workspace /absolute/path/to/zeon-workspace \
+  --platform openclaw
 ```
 
 Example:
@@ -81,17 +105,21 @@ Then start filling these first:
 Read this report immediately after install:
 
 - `docs/generated/project-truth-bootstrap.md`
+- `docs/generated/claude-compatibility-bootstrap.md`
 
 That report tells you:
 
 - what was auto-seeded
 - which docs are still too empty
+- which risky local directories were given a `CLAUDE.md`
 - which canonical docs should be filled next
 
 The rule is simple:
 
 - do not write one giant manual
 - use a short entry surface plus surface-specific source-of-truth docs
+- keep agent identity and personal memory out of the project repo; use a separate memory workspace
+- keep adapter-specific runtime wiring out of both the project repo and the memory workspace; use a separate runtime workspace
 
 ## 4. Reading Order During Real Work
 

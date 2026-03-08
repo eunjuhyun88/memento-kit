@@ -1,0 +1,7 @@
+{
+  "id": "session-boot-bundle",
+  "kind": "build",
+  "schedule": "on-session-start",
+  "command": "node scripts/build-project-context-bundle.mjs",
+  "notes": "Refresh the always-inject bundle before a new agent session starts."
+}

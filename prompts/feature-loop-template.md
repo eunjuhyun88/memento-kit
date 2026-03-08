@@ -50,8 +50,11 @@
 
 ### Plan 생성 프롬프트
 ```
+[README.md 첨부]
 [AGENTS.md 첨부]
-[docs/CONTEXT.md 첨부]
+[docs/README.md 첨부]
+[ARCHITECTURE.md 첨부]
+[docs/CONTEXT_ENGINEERING.md 첨부]
 [해당 product-spec.md 첨부]
 
 위 스펙을 기반으로 실행 계획을 작성해줘.
@@ -96,9 +99,12 @@
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 첨부 파일:
+- README.md
 - AGENTS.md
-- docs/CONTEXT.md
+- docs/README.md
+- ARCHITECTURE.md
 - docs/product-specs/{FEATURE_NAME}.md
+- docs/exec-plans/active/{FEATURE_NAME}_{YYYYMMDD}.md
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 현재 단계: Step {N} / {전체}
@@ -119,8 +125,9 @@
 
 ## 완료 후
 1. 완료 기준 달성 여부 직접 확인
-2. NOTES.md 업데이트 (완료 표시 + 다음 단계 포인터)
-3. git commit: "feat({scope}): Step {N} — {단계명}"
+2. docs/AGENT_WATCH_LOG.md에 진행 상황 기록
+3. 필요하면 `npm run ctx:checkpoint -- --work-id "<W-ID>" --surface "<surface>" --objective "<objective>"`로 semantic memory 갱신
+4. git commit: "feat({scope}): Step {N} — {단계명}"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -130,7 +137,9 @@
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[README.md 첨부]
 [AGENTS.md 첨부]
+[docs/README.md 첨부]
 [해당 product-spec.md 첨부]
 
 {기능명} 검증 요청.
@@ -155,6 +164,7 @@
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[README.md 첨부]
 [AGENTS.md 첨부]
 
 {기능명} 완료 처리:
@@ -163,13 +173,13 @@
    → docs/exec-plans/completed/ 로 이동
    Status를 "completed"로 업데이트
 
-2. NOTES.md 업데이트:
-   - 완료된 것에 체크 표시
-   - 발견된 패턴/주의사항 기록
+2. docs/AGENT_WATCH_LOG.md 업데이트:
+   - 완료된 것과 검증 결과 기록
+   - 다음 세션이 알아야 할 패턴/주의사항 기록
 
 3. 재사용 가능한 패턴이 있으면:
-   → skills/에 저장
-   → skills/SKILLS.md에 등록
+   → `.claude/commands/` 또는 `.claude/agents/`로 승격 제안
+   → 안정된 엔지니어링 규칙이면 canonical docs로 승격
 
 코드 수정 금지. 파일 이동과 메모 업데이트만.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -182,14 +192,15 @@
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 첨부 파일:
+- README.md
 - AGENTS.md
-- docs/CONTEXT.md
-- NOTES.md
+- docs/README.md
+- `.agent-context/briefs/*-latest.md` 또는 `.agent-context/handoffs/*-latest.md`가 있으면 첨부
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 이전 세션 이어서 진행.
 
-NOTES.md "현재 진행 중" 확인 후:
+최신 brief/handoff와 canonical docs를 기준으로:
 1. 마지막 완료 단계 확인
 2. 다음 단계 시작
 
@@ -216,6 +227,6 @@ NOTES.md "현재 진행 중" 확인 후:
 - 이미 완료된 중간 출력
 - 실패한 시도의 상세 로그
 
-압축 결과를 NOTES.md에 "이전 세션 요약" 섹션으로 저장.
+압축 결과는 chat에만 두지 말고 `npm run ctx:compact`를 사용해서 brief/handoff를 갱신해줘.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```

@@ -21,6 +21,12 @@ The current kit already has:
 That means the remaining work is no longer "make context management exist".
 It is "make the platform easier to adopt, safer to run, and harder to game".
 
+The optional agent-memory workspace bootstrap is already available.
+It should be treated as a separate layer, not as missing core functionality.
+
+The optional runtime workspace bootstrap is also already available.
+It should be treated as a separate layer for operational wiring, not as missing core functionality.
+
 ## Remaining Work
 
 ## 1. Productized CLI Surface

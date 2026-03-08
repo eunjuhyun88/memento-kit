@@ -8,6 +8,10 @@ const config = readJson(path.join(rootDir, 'context-kit.json'));
 const checkMode = process.argv.includes('--check');
 const outputJsonPath = path.join(rootDir, 'docs/generated/context-value-demo.json');
 const outputMarkdownPath = path.join(rootDir, 'docs/generated/context-value-demo.md');
+const excludedAllDocs = new Set([
+  path.resolve(outputMarkdownPath),
+  path.resolve(path.join(rootDir, 'docs/generated/context-efficiency-report.md')),
+]);
 
 function writeManaged(filePath, content) {
   const existing = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8') : null;
@@ -76,6 +80,7 @@ const smallMapFiles = [
   path.join(rootDir, 'ARCHITECTURE.md'),
   path.join(rootDir, 'docs/SYSTEM_INTENT.md'),
   path.join(rootDir, 'docs/CONTEXT_ENGINEERING.md'),
+  path.join(rootDir, 'docs/CLAUDE_COMPATIBILITY.md'),
   path.join(rootDir, 'docs/AGENT_FACTORY.md'),
   path.join(rootDir, 'docs/TOOL_DESIGN.md'),
   path.join(rootDir, 'docs/AGENT_OBSERVABILITY.md'),
@@ -86,10 +91,11 @@ const allDocsFiles = [
   path.join(rootDir, 'AGENTS.md'),
   path.join(rootDir, 'CLAUDE.md'),
   path.join(rootDir, 'ARCHITECTURE.md'),
+  ...listMarkdownFiles(path.join(rootDir, '.claude')),
   ...listMarkdownFiles(path.join(rootDir, 'docs')),
   ...listMarkdownFiles(path.join(rootDir, 'agents')),
   ...listMarkdownFiles(path.join(rootDir, 'tools')),
-];
+].filter((filePath) => !excludedAllDocs.has(path.resolve(filePath)));
 
 const smallMap = bundleStats(smallMapFiles);
 const allDocs = bundleStats(allDocsFiles);

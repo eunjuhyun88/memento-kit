@@ -1,0 +1,7 @@
+{
+  "id": "cross-agent-relay",
+  "kind": "format",
+  "schedule": "on-group-message",
+  "command": "node scripts/relay-crossview.mjs --from <agent> --to <recipients> --message <message>",
+  "notes": "Normalize outbound relay messages and prevent looped rebroadcast."
+}

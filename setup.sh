@@ -187,6 +187,15 @@ PY
     "storesDir": "src/lib/stores",
     "apiDir": "src/routes/api"
   },
+  "claude": {
+    "enabled": true,
+    "settingsPath": ".claude/settings.json",
+    "riskyPathHints": [
+      "src/auth",
+      "src/persistence",
+      "infra"
+    ]
+  },
   "surfaces": $surface_json,
   "harness": {
     "pages": [
@@ -665,6 +674,7 @@ ensure_gitignore
 
 chmod +x "$TARGET_DIR"/scripts/dev/*.sh || true
 chmod +x "$TARGET_DIR"/.githooks/* || true
+chmod +x "$TARGET_DIR"/.claude/hooks/*.sh || true
 
 if command -v node >/dev/null 2>&1; then
 	if [ "$FORCE" -eq 1 ]; then
@@ -684,12 +694,13 @@ if command -v node >/dev/null 2>&1; then
 			node scripts/dev/refresh-sandbox-policy-report.mjs
 			node scripts/dev/refresh-doc-governance.mjs
 			node scripts/dev/bootstrap-project-truth.mjs
+			node scripts/dev/bootstrap-claude-compat.mjs
 			node scripts/dev/refresh-generated-context.mjs
 			node scripts/dev/refresh-context-retrieval.mjs
 			node scripts/dev/refresh-context-registry.mjs
 			node scripts/dev/refresh-doc-governance.mjs
-			node scripts/dev/refresh-context-value-demo.mjs
 			node scripts/dev/refresh-context-metrics.mjs
+			node scripts/dev/refresh-context-value-demo.mjs
 		)
 else
 	echo "[setup] node not found. Skipped package.json script injection."

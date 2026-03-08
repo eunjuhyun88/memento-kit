@@ -20,6 +20,7 @@ const generatedSelfRefs = new Set([
   'docs/generated/context-ab-report.md',
   'docs/generated/sandbox-policy-report.md',
   'docs/generated/context-value-demo.md',
+  'docs/generated/claude-compatibility-bootstrap.md',
 ]);
 const virtualExistingRefs = new Set([
   'docs/generated/route-map.md',
@@ -43,6 +44,7 @@ const virtualExistingRefs = new Set([
   'docs/generated/sandbox-policy-report.md',
   'docs/generated/context-value-demo.md',
   'docs/generated/context-value-demo.json',
+  'docs/generated/claude-compatibility-bootstrap.md',
 ]);
 
 function ensureDir(dirPath) {
@@ -94,6 +96,7 @@ function classify(relPath) {
     'docs/SYSTEM_INTENT.md': ['canonical-entry', 'canonical', 'Canonical system intent and invariants.'],
     'docs/CONTEXT_ENGINEERING.md': ['canonical-entry', 'canonical', 'Canonical context-layering and retrieval discipline doc.'],
     'docs/CONTEXT_EVALUATION.md': ['canonical-entry', 'canonical', 'Canonical context evaluation and measurement doc.'],
+    'docs/CLAUDE_COMPATIBILITY.md': ['canonical-entry', 'canonical', 'Canonical Claude-native compatibility doc.'],
     'docs/CONTEXT_PLATFORM.md': ['canonical-entry', 'canonical', 'Canonical platform and registry doc.'],
     'docs/CONTEXTUAL_RETRIEVAL.md': ['canonical-entry', 'canonical', 'Canonical contextual retrieval doc.'],
     'docs/AGENT_FACTORY.md': ['canonical-entry', 'canonical', 'Canonical agent blueprint and scaffolding doc.'],
@@ -114,8 +117,15 @@ function classify(relPath) {
   };
   if (exact[relPath]) return exact[relPath];
   if (relPath === 'docs/archive/README.md') return ['archive-router', 'tracked-only', 'Archive interpretation policy.'];
+  if (relPath === '.claude/README.md') return ['claude-router', 'canonical', 'Claude-native router.'];
+  if (relPath === '.claude/agents/README.md') return ['claude-agent-router', 'canonical', 'Claude subagent router.'];
+  if (relPath === '.claude/commands/README.md') return ['claude-command-router', 'canonical', 'Claude command router.'];
+  if (relPath === '.claude/hooks/README.md') return ['claude-hook-router', 'canonical', 'Claude hook router.'];
   if (relPath === 'agents/README.md') return ['agent-router', 'canonical', 'Agent manifest authoring router.'];
   if (relPath === 'tools/README.md') return ['tool-router', 'canonical', 'Tool manifest authoring router.'];
+  if (relPath.startsWith('.claude/agents/')) return ['claude-agent', 'canonical', 'Claude subagent artifact.'];
+  if (relPath.startsWith('.claude/commands/')) return ['claude-command', 'canonical', 'Claude slash-command artifact.'];
+  if (relPath.startsWith('.claude/hooks/')) return ['claude-hook', 'supporting', 'Claude hook artifact.'];
   if (relPath.startsWith('docs/archive/')) return ['archive', 'tracked-only', 'Historical artifact only.'];
   if (relPath.startsWith('docs/design-docs/')) return ['design-doc', 'canonical', 'Structured design document.'];
   if (relPath.startsWith('docs/product-specs/')) return ['product-spec', 'canonical', 'Structured surface spec.'];
@@ -137,6 +147,8 @@ function extractRefs(content) {
       trimmed === 'CLAUDE.md' ||
       trimmed === 'ARCHITECTURE.md' ||
       trimmed === 'context-kit.json' ||
+      trimmed.startsWith('.claude/') ||
+      trimmed.endsWith('/CLAUDE.md') ||
       trimmed.startsWith('agents/') ||
       trimmed.startsWith('tools/') ||
       trimmed.startsWith('docs/') ||
@@ -228,7 +240,7 @@ const { config, routes, stores, apis } = discoverFromConfigAndCode();
 ensureDir(generatedDir);
 
 const markdownFiles = [
-  ...['README.md', 'AGENTS.md', 'CLAUDE.md', 'ARCHITECTURE.md']
+  ...['README.md', 'AGENTS.md', 'CLAUDE.md', 'ARCHITECTURE.md', '.claude/README.md']
     .map((file) => path.join(rootDir, file))
     .filter((file) => fs.existsSync(file)),
   ...walk(path.join(rootDir, 'agents'))

@@ -13,15 +13,16 @@ Purpose:
 3. `docs/README.md`
 4. `docs/SYSTEM_INTENT.md`
 5. `docs/CONTEXT_ENGINEERING.md`
-6. `docs/CONTEXTUAL_RETRIEVAL.md`
-7. `docs/AGENT_FACTORY.md`
-8. `docs/TOOL_DESIGN.md`
-9. `docs/AGENT_OBSERVABILITY.md`
-10. `docs/CONTEXT_PLATFORM.md`
-11. `docs/MULTI_AGENT_COORDINATION.md`
-12. `docs/GIT_WORKFLOW.md`
-13. `ARCHITECTURE.md`
-14. Relevant canonical docs from `docs/`
+6. `docs/CLAUDE_COMPATIBILITY.md`
+7. `docs/CONTEXTUAL_RETRIEVAL.md`
+8. `docs/AGENT_FACTORY.md`
+9. `docs/TOOL_DESIGN.md`
+10. `docs/AGENT_OBSERVABILITY.md`
+11. `docs/CONTEXT_PLATFORM.md`
+12. `docs/MULTI_AGENT_COORDINATION.md`
+13. `docs/GIT_WORKFLOW.md`
+14. `ARCHITECTURE.md`
+15. Relevant canonical docs from `docs/`
 
 ## System Map
 
@@ -46,6 +47,7 @@ Example:
 - Product rules and user-value constraints: `docs/PRODUCT_SENSE.md`
 - Current plans: `docs/PLANS.md`
 - Context retrieval and measurement rules: `docs/CONTEXT_ENGINEERING.md`, `docs/CONTEXT_EVALUATION.md`
+- Claude-native repo layer: `docs/CLAUDE_COMPATIBILITY.md`, `.claude/README.md`
 - Query-time retrieval rules: `docs/CONTEXTUAL_RETRIEVAL.md`
 - Agent blueprint rules: `docs/AGENT_FACTORY.md`, `agents/README.md`
 - Tool contract rules: `docs/TOOL_DESIGN.md`, `tools/README.md`

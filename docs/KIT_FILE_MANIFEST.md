@@ -5,6 +5,8 @@
 ### Bootstrap
 
 - `setup.sh`
+- `setup-memory.sh`
+- `setup-runtime.sh`
 - `README.md`
 
 ### Kit-Level Documentation
@@ -32,6 +34,8 @@
 ### Installable Template
 
 - `templates/repo/`
+- `templates/agent-memory/`
+- `templates/agent-runtime/`
 
 ## Installed Target Repository Files
 
@@ -42,9 +46,37 @@
 - `CLAUDE.md`
 - `ARCHITECTURE.md`
 - `context-kit.json`
+- `.claude/*`
 - `.gitignore`
 - `agents/*`
 - `tools/*`
+
+### Optional Agent Memory Workspace Files
+
+- `SOUL.md`
+- `USER.md`
+- `AGENTS.md`
+- `MEMORY.md`
+- `HEARTBEAT.md`
+- `TOOLS.md`
+- `compound/lessons.md`
+- `compound/context.md`
+- `memory/YYYY-MM-DD.md`
+- `drafts/`
+
+### Optional Agent Runtime Workspace Files
+
+- `README.md`
+- `runtime-config.json`
+- `adapters/*`
+- `prompts/*`
+- `jobs/*`
+- `scripts/check-runtime-config.mjs`
+- `scripts/build-project-context-bundle.mjs`
+- `scripts/build-memory-index.mjs`
+- `scripts/distill-memory.mjs`
+- `scripts/relay-crossview.mjs`
+- `generated/*`
 
 ### Docs
 
@@ -52,6 +84,7 @@
 - `docs/SYSTEM_INTENT.md`
 - `docs/CONTEXT_ENGINEERING.md`
 - `docs/CONTEXT_EVALUATION.md`
+- `docs/CLAUDE_COMPATIBILITY.md`
 - `docs/CONTEXT_PLATFORM.md`
 - `docs/CONTEXTUAL_RETRIEVAL.md`
 - `docs/AGENT_FACTORY.md`
@@ -85,6 +118,7 @@
 - `scripts/dev/context-restore.sh`
 - `scripts/dev/context-pin.sh`
 - `scripts/dev/context-auto.sh`
+- `scripts/dev/bootstrap-claude-compat.mjs`
 - `scripts/dev/coordination-lib.mjs`
 - `scripts/dev/claim-work.mjs`
 - `scripts/dev/list-work-claims.mjs`
@@ -134,6 +168,7 @@
 
 - `.githooks/pre-push`
 - `.githooks/post-merge`
+- `.claude/hooks/*`
 
 ### Prompt/Lint Copies
 
@@ -165,6 +200,7 @@ During setup, the target also gets:
 - `docs/generated/context-value-demo.md`
 - `docs/generated/context-value-demo.json`
 - `docs/generated/sandbox-policy-report.md`
+- `docs/generated/claude-compatibility-bootstrap.md`
 
 ## Runtime-Only Outputs
 

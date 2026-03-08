@@ -19,11 +19,15 @@ The kit exists to turn a repository into an agent-first workspace with:
 ```mermaid
 flowchart TD
   A["setup.sh"] --> B["templates/repo/"]
+  A2["setup-memory.sh"] --> B2["templates/agent-memory/"]
+  A3["setup-runtime.sh"] --> B3["templates/agent-runtime/"]
   B --> C["target repo root docs"]
   B --> D["target repo scripts/dev"]
   B --> E["target repo .githooks"]
   B --> F["target repo docs/"]
   B --> F2["target repo agents/"]
+  B2 --> W["agent memory workspace"]
+  B3 --> R["agent runtime workspace"]
   C --> G["canonical routing"]
   D --> H["context runtime"]
   D --> H2["coordination claims"]
@@ -34,6 +38,8 @@ flowchart TD
   F --> M["generated docs"]
   H --> N[".agent-context/"]
   D --> O["runtime benchmark"]
+  W --> W2["SOUL / USER / MEMORY / HEARTBEAT / lessons / daily memory"]
+  R --> R2["context bundle / memory index / distill report / relay payloads"]
 ```
 
 ## Main Components
@@ -41,7 +47,11 @@ flowchart TD
 ### 1. Bootstrap Layer
 
 - `setup.sh`
+- `setup-memory.sh`
+- `setup-runtime.sh`
 - `templates/repo/`
+- `templates/agent-memory/`
+- `templates/agent-runtime/`
 
 This layer applies the kit into a target repository. It is responsible for:
 
@@ -52,6 +62,23 @@ This layer applies the kit into a target repository. It is responsible for:
 - generating initial agent manifests
 - injecting npm scripts into `package.json`
 - running initial generated-doc refresh
+
+The optional memory bootstrap is separate. It is responsible for:
+
+- creating an agent-local memory workspace
+- writing identity and relationship files
+- writing layered long-term memory scaffolding
+- creating daily-memory and lessons files
+- initializing git in the memory workspace if needed
+
+The optional runtime bootstrap is also separate. It is responsible for:
+
+- creating a platform-specific runtime workspace
+- pointing runtime config at a core repo and memory workspace
+- generating boot bundles and memory indexes
+- generating nightly distill reports
+- formatting cross-agent relay payloads
+- initializing git in the runtime workspace if needed
 
 ### 2. Canonical Docs Layer
 

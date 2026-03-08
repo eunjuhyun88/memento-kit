@@ -11,6 +11,7 @@ This file defines how context should be shaped, retrieved, compacted, and measur
    - `ARCHITECTURE.md`
    - `docs/SYSTEM_INTENT.md`
    - `docs/CONTEXT_ENGINEERING.md`
+   - `docs/CLAUDE_COMPATIBILITY.md` when Claude-native hooks, commands, or local guidance matter
 2. Canonical surface docs
    - `docs/product-specs/*.md`
    - `docs/design-docs/*.md`
@@ -124,10 +125,7 @@ This repository should enforce context discipline mechanically.
 ### Current controls
 
 - `scripts/dev/check-docs-context.sh`
-  - required files
-  - required headings
-  - line budgets for the small map
-  - placeholder and path hygiene checks
+  - required files, required headings, small-map line budgets, and placeholder/path hygiene checks
 - `scripts/dev/check-context-quality.sh`
   - brief/handoff quality checks
 - `scripts/dev/refresh-generated-context.mjs`
@@ -136,6 +134,8 @@ This repository should enforce context discipline mechanically.
   - authority catalog, legacy audit, contract report
 - `scripts/dev/refresh-context-metrics.mjs`
   - bundle-size and savings report
+- `scripts/dev/bootstrap-claude-compat.mjs`
+  - Claude-native compatibility layer and risky-path local guidance bootstrap
 - `scripts/dev/refresh-context-registry.mjs`
   - portable registry manifest and open-source query surface
 - `scripts/dev/refresh-context-retrieval.mjs`
@@ -148,6 +148,8 @@ This repository should enforce context discipline mechanically.
   - explicit sandbox boundary report
 - `.githooks/pre-push`
   - enforces context and optional project gates before push
+- `.claude/hooks/*`
+  - refresh lightweight runtime memory and compaction artifacts inside Claude Code
 
 Thresholds should start bootstrap-safe and tighten as the repo grows. The defaults live in `context-kit.json`.
 

@@ -17,9 +17,12 @@ Reusable bootstrap kit for turning a repository into an agent-first workspace wi
 - contextual retrieval index + query API
 - routed-vs-baseline task comparison recording
 - sandbox policy validation and reporting
+- Claude-native agents, commands, hooks, and local-risk guidance
 - git workflow rules and repo-local git config bootstrap
 - git hooks that enforce context discipline
 - push-time coordination checks for parallel agent work
+- an optional agent-memory workspace bootstrap for identity, lessons, heartbeat, and layered memory
+- an optional runtime workspace bootstrap for session boot, nightly distill, memory indexing, and cross-agent relay
 
 This kit is extracted from the context-management system hardened in a real repo, then generalized so other teams can apply it with one setup step.
 
@@ -27,6 +30,7 @@ It now also includes:
 
 - an explicit `CONTEXT_ENGINEERING.md` layer in installed repos
 - a `CONTEXT_EVALUATION.md` measurement guide
+- a `CLAUDE_COMPATIBILITY.md` layer for Claude-native repo setup
 - a generated `context-efficiency-report.md`
 - a generated `context-registry.md` + `context-registry.json`
 - a generated `contextual-retrieval.md` + `contextual-retrieval-index.json`
@@ -39,6 +43,7 @@ It now also includes:
 - a repeated `harness:benchmark` runtime/noise benchmark
 - a `MULTI_AGENT_COORDINATION.md` coordination layer in installed repos
 - a `CONTEXT_PLATFORM.md` + `SANDBOX_POLICY.md` layer for open-source discovery and execution boundaries
+- a separate `setup-memory.sh` bootstrap for agent-local memory workspaces
 - line-budget enforcement for the small map
 - noise-aware evaluation guidance inspired by Anthropic engineering notes
 
@@ -58,12 +63,22 @@ If you want the kit itself fully documented, start here:
 - `docs/KIT_VERIFICATION.md`
 - `docs/KIT_FILE_MANIFEST.md`
 - `docs/KIT_DESIGN_DECISIONS.md`
+- `docs/KIT_MEMORY_LAYER.md`
+- `docs/KIT_RUNTIME_LAYER.md`
 - `docs/KIT_REFERENCE_ALIGNMENT.md`
 - `docs/KIT_REMAINING_DESIGN.md`
 
 Example target config:
 
 - `examples/context-kit.sample.json`
+
+Optional memory workspace bootstrap:
+
+- `setup-memory.sh`
+
+Optional runtime workspace bootstrap:
+
+- `setup-runtime.sh`
 
 ## What It Installs
 
@@ -73,6 +88,12 @@ Example target config:
   - `CLAUDE.md`
   - `ARCHITECTURE.md`
   - `context-kit.json`
+- Claude-native layer:
+  - `docs/CLAUDE_COMPATIBILITY.md`
+  - `.claude/settings.json`
+  - `.claude/agents/*.md`
+  - `.claude/commands/*.md`
+  - `.claude/hooks/*.sh`
 - Reusable agent layer:
   - `agents/*.json`
   - `docs/AGENT_FACTORY.md`
@@ -133,23 +154,45 @@ bash /path/to/memento-kit/setup.sh \
   --summary "One-line product summary"
 ```
 
+Optional agent-memory workspace:
+
+```bash
+bash /path/to/memento-kit/setup-memory.sh \
+  --target ./zeon-workspace \
+  --agent-name Zeon \
+  --agent-role "orchestrator" \
+  --user-name "Simon"
+```
+
+Optional runtime workspace:
+
+```bash
+bash /path/to/memento-kit/setup-runtime.sh \
+  --target ./zeon-runtime \
+  --agent-name Zeon \
+  --core-repo /path/to/project-repo \
+  --memory-workspace /path/to/zeon-workspace \
+  --platform openclaw
+```
+
 ## After Setup
 
 1. Review `context-kit.json`
 2. Review `docs/generated/project-truth-bootstrap.md`
-3. Fill in the canonical docs with project-specific truth
-4. Install hooks:
+3. Review `docs/generated/claude-compatibility-bootstrap.md`
+4. Fill in the canonical docs with project-specific truth
+5. Install hooks:
    ```bash
    npm run safe:hooks
    npm run safe:git-config
    ```
-5. Generate derived docs:
+6. Generate derived docs:
    ```bash
    npm run adopt:bootstrap
    npm run docs:refresh
    npm run docs:check
    ```
-6. Validate the context system in two layers:
+7. Validate the context system in two layers:
    ```bash
    npm run harness:benchmark -- --base-url http://localhost:4173
    ```
@@ -161,7 +204,7 @@ bash /path/to/memento-kit/setup.sh \
    - `docs/generated/context-registry.md`
    - `docs/generated/sandbox-policy-report.md`
    - `.agent-context/evaluations/<run-id>/summary.md`
-7. Try the discovery and safety surfaces:
+8. Try the discovery and safety surfaces:
    ```bash
    npm run agent:start -- --agent planner --surface core
    npm run agent:event -- --type doc_open --path docs/PLANS.md
@@ -177,7 +220,7 @@ bash /path/to/memento-kit/setup.sh \
    npm run value:demo
    npm run sandbox:check
    ```
-8. Record at least one routed-vs-baseline comparison:
+9. Record at least one routed-vs-baseline comparison:
    ```bash
    npm run eval:ab:record -- \
      --task-id "TASK-001" \
@@ -188,7 +231,7 @@ bash /path/to/memento-kit/setup.sh \
      --baseline-minutes 6
    npm run eval:ab:refresh
    ```
-9. For parallel work, claim explicit ownership before edits:
+10. For parallel work, claim explicit ownership before edits:
    ```bash
    npm run coord:claim -- \
      --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" \
@@ -198,7 +241,7 @@ bash /path/to/memento-kit/setup.sh \
      --path "src/routes/core"
    ```
    Feature branches should claim at least one explicit path boundary.
-10. Start using semantic checkpoints:
+11. Start using semantic checkpoints:
    ```bash
    npm run ctx:checkpoint -- \
      --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" \
@@ -214,8 +257,10 @@ bash /path/to/memento-kit/setup.sh \
 - Stable rules get promoted into canonical docs or enforcement scripts.
 - Legacy docs stay visible but lose authority.
 - Generated maps exist to reduce first-pass context cost.
+- Claude-native files exist so Claude Code can reuse the same operating model without inventing new prompt glue.
 - Agent manifests exist so outsiders can discover reusable workers without hidden prompts.
 - Tool contracts exist so outsiders can discover reusable capabilities without hidden prompt glue.
+- Runtime workspaces exist so session boot, nightly distill, and cross-agent relay stay separate from both project truth and agent identity.
 - Runtime telemetry exists so time-saved claims are inspectable instead of anecdotal.
 - Contextual retrieval exists to reduce ambiguous full-doc scans.
 - Final context acceptance requires both structural savings and repeated runtime stability.

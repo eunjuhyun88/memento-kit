@@ -8,8 +8,8 @@ const packagePath = path.join(targetDir, 'package.json');
 const nameFallback = path.basename(targetDir).toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
 const scripts = {
-  'docs:refresh': 'node scripts/dev/refresh-generated-context.mjs && node scripts/dev/refresh-context-retrieval.mjs && node scripts/dev/refresh-agent-catalog.mjs && node scripts/dev/refresh-tool-catalog.mjs && node scripts/dev/refresh-agent-usage-report.mjs && node scripts/dev/refresh-context-registry.mjs && node scripts/dev/refresh-context-ab-report.mjs && node scripts/dev/refresh-sandbox-policy-report.mjs && node scripts/dev/refresh-doc-governance.mjs && node scripts/dev/refresh-context-value-demo.mjs && node scripts/dev/refresh-context-metrics.mjs',
-  'docs:refresh:check': 'node scripts/dev/refresh-generated-context.mjs --check && node scripts/dev/refresh-context-retrieval.mjs --check && node scripts/dev/refresh-agent-catalog.mjs --check && node scripts/dev/refresh-tool-catalog.mjs --check && node scripts/dev/refresh-agent-usage-report.mjs --check && node scripts/dev/refresh-context-registry.mjs --check && node scripts/dev/refresh-context-ab-report.mjs --check && node scripts/dev/refresh-sandbox-policy-report.mjs --check && node scripts/dev/refresh-doc-governance.mjs --check && node scripts/dev/refresh-context-value-demo.mjs --check && node scripts/dev/refresh-context-metrics.mjs --check',
+  'docs:refresh': 'node scripts/dev/refresh-generated-context.mjs && node scripts/dev/refresh-context-retrieval.mjs && node scripts/dev/refresh-agent-catalog.mjs && node scripts/dev/refresh-tool-catalog.mjs && node scripts/dev/refresh-agent-usage-report.mjs && node scripts/dev/refresh-context-registry.mjs && node scripts/dev/refresh-context-ab-report.mjs && node scripts/dev/refresh-sandbox-policy-report.mjs && node scripts/dev/refresh-doc-governance.mjs && node scripts/dev/refresh-context-metrics.mjs && node scripts/dev/refresh-context-value-demo.mjs',
+  'docs:refresh:check': 'node scripts/dev/refresh-generated-context.mjs --check && node scripts/dev/refresh-context-retrieval.mjs --check && node scripts/dev/refresh-agent-catalog.mjs --check && node scripts/dev/refresh-tool-catalog.mjs --check && node scripts/dev/refresh-agent-usage-report.mjs --check && node scripts/dev/refresh-context-registry.mjs --check && node scripts/dev/refresh-context-ab-report.mjs --check && node scripts/dev/refresh-sandbox-policy-report.mjs --check && node scripts/dev/refresh-doc-governance.mjs --check && node scripts/dev/refresh-context-metrics.mjs --check && node scripts/dev/refresh-context-value-demo.mjs --check',
   'docs:check': 'bash scripts/dev/check-docs-context.sh',
   'gate:context': 'npm run docs:check && npm run ctx:check -- --strict && npm run coord:check && npm run sandbox:check',
   'safe:status': 'bash scripts/dev/safe-status.sh',
@@ -25,7 +25,8 @@ const scripts = {
   'ctx:restore': 'bash scripts/dev/context-restore.sh',
   'ctx:pin': 'bash scripts/dev/context-pin.sh',
   'ctx:auto': 'bash scripts/dev/context-auto.sh',
-  'adopt:bootstrap': 'node scripts/dev/bootstrap-project-truth.mjs',
+  'adopt:bootstrap': 'node scripts/dev/bootstrap-project-truth.mjs && node scripts/dev/bootstrap-claude-compat.mjs',
+  'claude:bootstrap': 'node scripts/dev/bootstrap-claude-compat.mjs',
   'coord:claim': 'node scripts/dev/claim-work.mjs',
   'coord:list': 'node scripts/dev/list-work-claims.mjs',
   'coord:check': 'node scripts/dev/check-agent-coordination.mjs',

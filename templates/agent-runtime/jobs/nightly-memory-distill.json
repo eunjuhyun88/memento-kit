@@ -1,0 +1,7 @@
+{
+  "id": "nightly-memory-distill",
+  "kind": "report",
+  "schedule": "daily-23:00",
+  "command": "node scripts/distill-memory.mjs",
+  "notes": "Generate a nightly report over the memory workspace without mutating memory by default."
+}

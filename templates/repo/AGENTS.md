@@ -13,17 +13,18 @@ This file defines mandatory execution rules for coding agents in `__PROJECT_NAME
 7. If the task creates or changes reusable tools, open `docs/TOOL_DESIGN.md` and `tools/README.md`.
 8. If the task needs measured runtime evidence or time-saved tracking, open `docs/AGENT_OBSERVABILITY.md`.
 9. If the task affects registry/API, public evaluation, or safety boundaries, open `docs/CONTEXT_PLATFORM.md` and `docs/SANDBOX_POLICY.md`.
-10. If the task involves branching, syncing, worktrees, or merge discipline, open `docs/GIT_WORKFLOW.md`.
-11. Run `git status --short --branch`.
-12. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
-13. On feature branches, create or refresh a coordination claim:
+10. If the task affects Claude-native commands, hooks, or local risk guidance, open `docs/CLAUDE_COMPATIBILITY.md` and `.claude/README.md`.
+11. If the task involves branching, syncing, worktrees, or merge discipline, open `docs/GIT_WORKFLOW.md`.
+12. Run `git status --short --branch`.
+13. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
+14. On feature branches, create or refresh a coordination claim:
    - `npm run coord:claim -- --work-id "<W-ID>" --agent "<agent>" --surface "<surface>" --summary "<summary>" --path "<prefix>"`
    - do not start meaningful edits on a feature branch without at least one claimed path prefix
-14. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
-15. Run `npm run safe:status`.
-16. For non-trivial work, create a semantic checkpoint:
+15. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
+16. Run `npm run safe:status`.
+17. For non-trivial work, create a semantic checkpoint:
    - `npm run ctx:checkpoint -- --work-id "<W-ID>" --surface "<surface>" --objective "<objective>"`
-17. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
+18. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
 
 ## Mandatory Validation Gate
 
@@ -47,6 +48,7 @@ If one fails, stop and fix it before push or merge.
 10. Use `docs/AGENT_FACTORY.md` before inventing a new agent prompt shape.
 11. Use `docs/TOOL_DESIGN.md` before inventing a new tool wrapper.
 12. Use `docs/AGENT_OBSERVABILITY.md` before claiming efficiency or time-saved wins.
+13. If Claude Code is in use, keep `.claude/hooks/` deterministic and keep local `CLAUDE.md` files near risky directories short and specific.
 
 ## Finish Sequence
 

@@ -12,8 +12,10 @@ This folder documents the kit itself, not the docs that get installed into a tar
 6. `docs/KIT_VERIFICATION.md`
 7. `docs/KIT_FILE_MANIFEST.md`
 8. `docs/KIT_DESIGN_DECISIONS.md`
-9. `docs/KIT_REFERENCE_ALIGNMENT.md`
-10. `docs/KIT_REMAINING_DESIGN.md`
+9. `docs/KIT_MEMORY_LAYER.md`
+10. `docs/KIT_RUNTIME_LAYER.md`
+11. `docs/KIT_REFERENCE_ALIGNMENT.md`
+12. `docs/KIT_REMAINING_DESIGN.md`
 
 ## What Each Document Covers
 
@@ -31,6 +33,10 @@ This folder documents the kit itself, not the docs that get installed into a tar
   - inventory of kit files and installed target files
 - `docs/KIT_DESIGN_DECISIONS.md`
   - rationale and tradeoffs behind the kit
+- `docs/KIT_MEMORY_LAYER.md`
+  - optional agent identity and memory workspace layer, separate from repo-local core
+- `docs/KIT_RUNTIME_LAYER.md`
+  - optional runtime wiring layer, separate from both repo-local core and agent-local memory
 - `docs/KIT_REFERENCE_ALIGNMENT.md`
   - how the kit maps to public context-engineering references and where gaps remain
 - `docs/KIT_REMAINING_DESIGN.md`

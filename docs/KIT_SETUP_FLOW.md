@@ -8,6 +8,8 @@ This document explains exactly what happens when someone runs:
 bash setup.sh --target <repo> --project-name <name> [options]
 ```
 
+It also notes where the optional `setup-memory.sh` and `setup-runtime.sh` flows begin once the core repo exists.
+
 ## Inputs
 
 Accepted setup inputs:
@@ -27,6 +29,7 @@ Accepted setup inputs:
 After setup, the target repository should have:
 
 - root collaboration docs
+- Claude-native `.claude/` layer
 - structured `docs/`
 - `scripts/dev/`
 - `.githooks/`
@@ -103,17 +106,20 @@ If Node is available, setup updates or creates `package.json` and injects:
 - `safe:*`
 - `ctx:*`
 - `coord:*`
+- `claude:*`
 - `harness:*`
 
 The script only adds missing keys. It does not overwrite existing matching script names.
 
-### 7. Generate initial derived docs
+### 7. Generate initial derived docs and Claude compatibility bootstrap
 
 If Node is available, setup runs:
 
 ```bash
 node scripts/dev/refresh-generated-context.mjs
 node scripts/dev/refresh-doc-governance.mjs
+node scripts/dev/bootstrap-project-truth.mjs
+node scripts/dev/bootstrap-claude-compat.mjs
 ```
 
 This creates the first generated docs so `docs:check` has a stable baseline immediately after setup.
@@ -132,6 +138,7 @@ The target repository is expected to be immediately ready for:
 
 - `npm run docs:check`
 - `npm run safe:hooks`
+- `npm run claude:bootstrap`
 - `npm run ctx:save`
 - `npm run ctx:checkpoint`
 - `npm run ctx:compact`
@@ -149,3 +156,18 @@ The human owner should then:
 5. wire real `commands.check`, `commands.build`, and optionally `commands.gate`
 
 Until that happens, the repo has structure and enforcement, but the semantic content is still skeletal.
+
+## Optional Follow-On Bootstraps
+
+After the core repo exists, you can add:
+
+- `setup-memory.sh`
+  - for agent identity, layered memory, heartbeat, lessons, and daily memory
+- `setup-runtime.sh`
+  - for platform-specific boot injection, nightly distill, memory indexing, and cross-agent relay
+
+Those are separate on purpose:
+
+- core repo = project truth
+- memory workspace = agent identity and long-term memory
+- runtime workspace = operational wiring

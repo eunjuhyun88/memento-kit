@@ -13,8 +13,9 @@ node scripts/dev/refresh-context-registry.mjs --check
 node scripts/dev/refresh-context-ab-report.mjs --check
 node scripts/dev/refresh-sandbox-policy-report.mjs --check
 node scripts/dev/refresh-doc-governance.mjs --check
-node scripts/dev/refresh-context-value-demo.mjs --check
 node scripts/dev/refresh-context-metrics.mjs --check
+node scripts/dev/refresh-context-value-demo.mjs --check
+node scripts/dev/bootstrap-claude-compat.mjs --check
 
 FAIL=0
 
@@ -102,6 +103,10 @@ REQUIRED_DIRS=(
 	"agents"
 	"tools"
 	"scripts/dev"
+	".claude"
+	".claude/agents"
+	".claude/commands"
+	".claude/hooks"
 	".githooks"
 	"prompts"
 	"lint"
@@ -117,6 +122,7 @@ REQUIRED_FILES=(
 	"docs/SYSTEM_INTENT.md"
 	"docs/CONTEXT_ENGINEERING.md"
 	"docs/CONTEXT_EVALUATION.md"
+	"docs/CLAUDE_COMPATIBILITY.md"
 	"docs/CONTEXT_PLATFORM.md"
 	"docs/CONTEXTUAL_RETRIEVAL.md"
 	"docs/AGENT_FACTORY.md"
@@ -156,12 +162,28 @@ REQUIRED_FILES=(
 	"docs/generated/sandbox-policy-report.md"
 	"docs/generated/context-value-demo.md"
 	"docs/generated/project-truth-bootstrap.md"
+	"docs/generated/claude-compatibility-bootstrap.md"
 	"docs/generated/route-map.md"
 	"docs/generated/store-authority-map.md"
 	"docs/generated/api-group-map.md"
 	"docs/references/index.md"
 	"docs/archive/README.md"
 	"agents/README.md"
+	".claude/README.md"
+	".claude/settings.json"
+	".claude/agents/README.md"
+	".claude/agents/planner.md"
+	".claude/agents/implementer.md"
+	".claude/agents/reviewer.md"
+	".claude/commands/README.md"
+	".claude/commands/resume-context.md"
+	".claude/commands/checkpoint-context.md"
+	".claude/commands/gc-context.md"
+	".claude/hooks/README.md"
+	".claude/hooks/session-start.sh"
+	".claude/hooks/post-edit.sh"
+	".claude/hooks/pre-compact.sh"
+	".claude/hooks/stop-context.sh"
 	"tools/README.md"
 	"scripts/dev/context-config.mjs"
 	"scripts/dev/context-save.sh"
@@ -172,6 +194,7 @@ REQUIRED_FILES=(
 	"scripts/dev/context-pin.sh"
 	"scripts/dev/context-auto.sh"
 	"scripts/dev/bootstrap-project-truth.mjs"
+	"scripts/dev/bootstrap-claude-compat.mjs"
 	"scripts/dev/bootstrap-git-config.sh"
 	"scripts/dev/coordination-lib.mjs"
 	"scripts/dev/claim-work.mjs"
@@ -311,6 +334,8 @@ require_text "docs/CONTEXT_ENGINEERING.md" "## Context Layers" "context layers"
 require_text "docs/CONTEXT_ENGINEERING.md" "## Retrieval Order" "retrieval order"
 require_text "docs/CONTEXT_ENGINEERING.md" "## Anti-Patterns" "anti-patterns"
 require_text "docs/CONTEXT_ENGINEERING.md" "## Mechanical Enforcement" "mechanical enforcement"
+require_text "docs/CLAUDE_COMPATIBILITY.md" "## Mapping" "Claude compatibility mapping"
+require_text "docs/CLAUDE_COMPATIBILITY.md" "## Local Guidance Bootstrap" "Claude local guidance bootstrap"
 require_text "docs/CONTEXT_EVALUATION.md" "## What To Measure" "context evaluation metrics"
 require_text "docs/CONTEXT_EVALUATION.md" "## Final Context Acceptance" "final context acceptance"
 require_text "docs/CONTEXT_PLATFORM.md" "## Registry Model" "context registry model"
@@ -352,6 +377,11 @@ require_text "docs/generated/context-ab-report.md" "# Context A/B Report" "conte
 require_text "docs/generated/sandbox-policy-report.md" "# Sandbox Policy Report" "sandbox policy report heading"
 require_text "docs/generated/context-value-demo.md" "# Context Value Demo" "context value demo heading"
 require_text "docs/generated/project-truth-bootstrap.md" "# Project Truth Bootstrap" "project truth bootstrap heading"
+require_text "docs/generated/claude-compatibility-bootstrap.md" "# Claude Compatibility Bootstrap" "Claude compatibility bootstrap heading"
+require_text ".claude/README.md" "## What Lives Here" "Claude router inventory"
+require_text ".claude/agents/README.md" "## Included Defaults" "Claude agents defaults"
+require_text ".claude/commands/README.md" "## Included Defaults" "Claude commands defaults"
+require_text ".claude/hooks/README.md" "## Included Hooks" "Claude hooks defaults"
 
 require_max_lines "AGENTS.md" 140
 require_max_lines "ARCHITECTURE.md" 120
@@ -364,6 +394,11 @@ require_absent "docs/README.md" "__PROJECT_NAME__" "unrendered project placehold
 require_absent "README.md" "{{PROJECT_NAME}}" "legacy moustache placeholder"
 require_absent "AGENTS.md" "/Users/" "absolute local path in canonical doc"
 require_absent "docs/README.md" "/Users/" "absolute local path in docs router"
+require_absent "prompts/feature-loop-template.md" "docs/CONTEXT.md" "stale docs/CONTEXT reference in feature prompt"
+require_absent "prompts/feature-loop-template.md" "NOTES.md" "stale NOTES reference in feature prompt"
+require_absent "prompts/gc-loop-prompt.md" "docs/CONTEXT.md" "stale docs/CONTEXT reference in GC prompt"
+require_absent "prompts/gc-loop-prompt.md" "NOTES.md" "stale NOTES reference in GC prompt"
+require_absent "prompts/gc-loop-prompt.md" "skills/SKILLS.md" "stale skills registry reference in GC prompt"
 
 if [ "$FAIL" -ne 0 ]; then
 	echo "[docs:check] failed."

@@ -36,13 +36,14 @@ The goal is not to read more files. The goal is to read the right files first.
 3. System intent and structure: `docs/SYSTEM_INTENT.md`, `ARCHITECTURE.md`
 4. Context retrieval discipline and measurement: `docs/CONTEXT_ENGINEERING.md`, `docs/CONTEXT_EVALUATION.md`
 5. Query-time retrieval layer: `docs/CONTEXTUAL_RETRIEVAL.md`
-6. Agent blueprint design: `docs/AGENT_FACTORY.md`, `agents/README.md`
-7. Tool contract design: `docs/TOOL_DESIGN.md`, `tools/README.md`
-8. Agent runtime telemetry: `docs/AGENT_OBSERVABILITY.md`
-9. Open-source platform layers: `docs/CONTEXT_PLATFORM.md`, `docs/SANDBOX_POLICY.md`
-10. Parallel-agent ownership and handoff: `docs/MULTI_AGENT_COORDINATION.md`
-11. Git operating rules: `docs/GIT_WORKFLOW.md`
-12. Stable canonical entry docs:
+6. Claude-native repo layer: `docs/CLAUDE_COMPATIBILITY.md`, `.claude/README.md`
+7. Agent blueprint design: `docs/AGENT_FACTORY.md`, `agents/README.md`
+8. Tool contract design: `docs/TOOL_DESIGN.md`, `tools/README.md`
+9. Agent runtime telemetry: `docs/AGENT_OBSERVABILITY.md`
+10. Open-source platform layers: `docs/CONTEXT_PLATFORM.md`, `docs/SANDBOX_POLICY.md`
+11. Parallel-agent ownership and handoff: `docs/MULTI_AGENT_COORDINATION.md`
+12. Git operating rules: `docs/GIT_WORKFLOW.md`
+13. Stable canonical entry docs:
    - `docs/DESIGN.md`
    - `docs/ENGINEERING.md`
    - `docs/PLANS.md`
@@ -138,6 +139,7 @@ Project-specific truth for this kit lives in:
 - `docs/exec-plans/active/*.md`
 - `docs/CONTEXT_ENGINEERING.md`
 - `docs/CONTEXT_EVALUATION.md`
+- `docs/CLAUDE_COMPATIBILITY.md`
 - `docs/CONTEXT_PLATFORM.md`
 - `docs/CONTEXTUAL_RETRIEVAL.md`
 - `docs/AGENT_FACTORY.md`
@@ -146,6 +148,10 @@ Project-specific truth for this kit lives in:
 - `docs/MULTI_AGENT_COORDINATION.md`
 - `docs/GIT_WORKFLOW.md`
 - `docs/SANDBOX_POLICY.md`
+- `.claude/settings.json`
+- `.claude/agents/*.md`
+- `.claude/commands/*.md`
+- `.claude/hooks/*.sh`
 - `agents/*.json`
 - `tools/*.json`
 

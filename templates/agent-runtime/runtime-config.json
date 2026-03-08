@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "agent": {
+    "name": "__AGENT_NAME__",
+    "slug": "__AGENT_SLUG__"
+  },
+  "platform": {
+    "name": "__RUNTIME_PLATFORM__"
+  },
+  "summary": "__RUNTIME_SUMMARY__",
+  "paths": {
+    "coreRepo": "__CORE_REPO__",
+    "memoryWorkspace": "__MEMORY_WORKSPACE__",
+    "generatedDir": "generated"
+  },
+  "boot": {
+    "alwaysInject": [
+      "SOUL.md",
+      "USER.md",
+      "AGENTS.md",
+      "MEMORY.md"
+    ],
+    "alsoReadLatestDaily": true,
+    "alsoReadLessons": true
+  },
+  "retrieval": {
+    "chunkWords": 120,
+    "overlapWords": 30,
+    "minScore": 0.35,
+    "maxAttempts": 2
+  },
+  "distill": {
+    "promoteLayers": [
+      "M30",
+      "M90",
+      "M365"
+    ],
+    "reportPath": "generated/nightly-distill-report.md"
+  },
+  "crossview": {
+    "prefix": "[group crossview]",
+    "noRelayPrefix": "[group crossview]",
+    "maxFanout": 8
+  }
+}

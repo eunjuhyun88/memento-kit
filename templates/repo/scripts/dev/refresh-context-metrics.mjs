@@ -6,6 +6,10 @@ const rootDir = process.cwd();
 const configPath = path.join(rootDir, 'context-kit.json');
 const outputPath = path.join(rootDir, 'docs/generated/context-efficiency-report.md');
 const checkMode = process.argv.includes('--check');
+const excludedAllDocs = new Set([
+  path.resolve(outputPath),
+  path.resolve(path.join(rootDir, 'docs/generated/context-value-demo.md')),
+]);
 const defaultTargets = {
   smallMapReductionVsCanonicalPct: 40,
   smallMapReductionVsAllDocsPct: 55,
@@ -115,6 +119,7 @@ const smallMapFiles = [
   path.join(rootDir, 'ARCHITECTURE.md'),
   path.join(rootDir, 'docs/SYSTEM_INTENT.md'),
   path.join(rootDir, 'docs/CONTEXT_ENGINEERING.md'),
+  path.join(rootDir, 'docs/CLAUDE_COMPATIBILITY.md'),
   path.join(rootDir, 'docs/AGENT_FACTORY.md'),
   path.join(rootDir, 'docs/TOOL_DESIGN.md'),
   path.join(rootDir, 'docs/AGENT_OBSERVABILITY.md'),
@@ -145,8 +150,9 @@ const allDocsFiles = unique([
   path.join(rootDir, 'AGENTS.md'),
   path.join(rootDir, 'CLAUDE.md'),
   path.join(rootDir, 'ARCHITECTURE.md'),
+  ...listMarkdownFiles(path.join(rootDir, '.claude')),
   ...listMarkdownFiles(path.join(rootDir, 'docs')),
-]).filter((filePath) => path.resolve(filePath) !== path.resolve(outputPath));
+]).filter((filePath) => !excludedAllDocs.has(path.resolve(filePath)));
 
 const smallMapStats = bundleStats(smallMapFiles);
 const canonicalStats = bundleStats(canonicalFiles);
