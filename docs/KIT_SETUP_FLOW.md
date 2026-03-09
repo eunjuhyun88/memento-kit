@@ -30,6 +30,7 @@ After setup, the target repository should have:
 
 - root collaboration docs
 - Claude-native `.claude/` layer
+- `.github/workflows/`
 - structured `docs/`
 - `scripts/dev/`
 - `.githooks/`
@@ -107,6 +108,7 @@ If Node is available, setup updates or creates `package.json` and injects:
 - `ctx:*`
 - `coord:*`
 - `claude:*`
+- `ci:*`
 - `harness:*`
 
 The script only adds missing keys. It does not overwrite existing matching script names.

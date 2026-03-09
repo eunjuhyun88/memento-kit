@@ -44,6 +44,7 @@ The goal is:
 - Merge only with explicit human approval.
 - Prefer squash merge or a short clean history over long accidental merge chains.
 - Do not create periodic merge commits just to "save progress."
+- Mirror local merge expectations in `docs/CI_PIPELINE.md` and `.github/workflows/ci.yml`.
 
 ## What Should Be Periodic
 

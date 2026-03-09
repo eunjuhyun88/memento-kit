@@ -21,6 +21,7 @@ Reusable bootstrap kit for turning a repository into an agent-first workspace wi
 - git workflow rules and repo-local git config bootstrap
 - git hooks that enforce context discipline
 - push-time coordination checks for parallel agent work
+- GitHub Actions CI template for remote context and merge enforcement
 - an optional agent-memory workspace bootstrap for identity, lessons, heartbeat, and layered memory
 - an optional runtime workspace bootstrap for session boot, nightly distill, memory indexing, and cross-agent relay
 
@@ -111,6 +112,7 @@ Optional runtime workspace bootstrap:
   - `scripts/dev/context-*.sh`
   - `scripts/dev/refresh-*.mjs`
   - `scripts/dev/run-*-harness.sh`
+  - `.github/workflows/ci.yml`
   - `.githooks/pre-push`
   - `.githooks/post-merge`
 - Reusable prompts and lint helpers:

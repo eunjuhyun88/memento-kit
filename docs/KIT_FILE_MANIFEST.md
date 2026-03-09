@@ -20,6 +20,8 @@
 - `docs/KIT_FILE_MANIFEST.md`
 - `docs/KIT_DESIGN_DECISIONS.md`
 - `docs/KIT_REFERENCE_ALIGNMENT.md`
+- `docs/KIT_MEMORY_LAYER.md`
+- `docs/KIT_RUNTIME_LAYER.md`
 
 ### Reusable Prompts
 
@@ -47,6 +49,7 @@
 - `ARCHITECTURE.md`
 - `context-kit.json`
 - `.claude/*`
+- `.github/workflows/*`
 - `.gitignore`
 - `agents/*`
 - `tools/*`
@@ -87,6 +90,7 @@
 - `docs/CLAUDE_COMPATIBILITY.md`
 - `docs/CONTEXT_PLATFORM.md`
 - `docs/CONTEXTUAL_RETRIEVAL.md`
+- `docs/CI_PIPELINE.md`
 - `docs/AGENT_FACTORY.md`
 - `docs/TOOL_DESIGN.md`
 - `docs/AGENT_OBSERVABILITY.md`
@@ -118,6 +122,8 @@
 - `scripts/dev/context-restore.sh`
 - `scripts/dev/context-pin.sh`
 - `scripts/dev/context-auto.sh`
+- `scripts/dev/ci-install-deps.sh`
+- `scripts/dev/run-ci-context.sh`
 - `scripts/dev/bootstrap-claude-compat.mjs`
 - `scripts/dev/coordination-lib.mjs`
 - `scripts/dev/claim-work.mjs`

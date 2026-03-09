@@ -43,7 +43,8 @@ The goal is not to read more files. The goal is to read the right files first.
 10. Open-source platform layers: `docs/CONTEXT_PLATFORM.md`, `docs/SANDBOX_POLICY.md`
 11. Parallel-agent ownership and handoff: `docs/MULTI_AGENT_COORDINATION.md`
 12. Git operating rules: `docs/GIT_WORKFLOW.md`
-13. Stable canonical entry docs:
+13. Remote CI and merge criteria: `docs/CI_PIPELINE.md`
+14. Stable canonical entry docs:
    - `docs/DESIGN.md`
    - `docs/ENGINEERING.md`
    - `docs/PLANS.md`
@@ -52,7 +53,7 @@ The goal is not to read more files. The goal is to read the right files first.
    - `docs/RELIABILITY.md`
    - `docs/SECURITY.md`
    - `docs/HARNESS.md`
-12. Historical material: `docs/archive/`
+15. Historical material: `docs/archive/`
 
 ## 2) Quick Start
 
@@ -88,6 +89,12 @@ npm run safe:status
 - `npm run safe:worktree -- <task-name> [base-branch]`
 - `npm run safe:sync`
 - `npm run safe:sync:gate`
+
+## 3.2.1) CI Commands
+
+- `npm run ci:install`
+- `npm run ci:context`
+- `npm run ci:all`
 
 ## 3.3) Platform Commands
 
@@ -147,6 +154,7 @@ Project-specific truth for this kit lives in:
 - `docs/AGENT_OBSERVABILITY.md`
 - `docs/MULTI_AGENT_COORDINATION.md`
 - `docs/GIT_WORKFLOW.md`
+- `docs/CI_PIPELINE.md`
 - `docs/SANDBOX_POLICY.md`
 - `.claude/settings.json`
 - `.claude/agents/*.md`

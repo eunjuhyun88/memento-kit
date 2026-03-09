@@ -130,5 +130,5 @@ Likely next upgrades:
 - metrics/traces harness
 - interactive browser replay
 - richer semantic doc/code consistency checks
-- optional CI workflow templates
+- richer provider-specific CI presets
 - more framework-specific discovery presets

@@ -14,7 +14,7 @@ This file defines mandatory execution rules for coding agents in `__PROJECT_NAME
 8. If the task needs measured runtime evidence or time-saved tracking, open `docs/AGENT_OBSERVABILITY.md`.
 9. If the task affects registry/API, public evaluation, or safety boundaries, open `docs/CONTEXT_PLATFORM.md` and `docs/SANDBOX_POLICY.md`.
 10. If the task affects Claude-native commands, hooks, or local risk guidance, open `docs/CLAUDE_COMPATIBILITY.md` and `.claude/README.md`.
-11. If the task involves branching, syncing, worktrees, or merge discipline, open `docs/GIT_WORKFLOW.md`.
+11. If the task involves branching, syncing, worktrees, CI, or merge discipline, open `docs/GIT_WORKFLOW.md` and `docs/CI_PIPELINE.md`.
 12. Run `git status --short --branch`.
 13. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
 14. On feature branches, create or refresh a coordination claim:

@@ -24,6 +24,7 @@ flowchart TD
   B --> C["target repo root docs"]
   B --> D["target repo scripts/dev"]
   B --> E["target repo .githooks"]
+  B --> E2["target repo .github/workflows"]
   B --> F["target repo docs/"]
   B --> F2["target repo agents/"]
   B2 --> W["agent memory workspace"]
@@ -34,6 +35,7 @@ flowchart TD
   D --> I["generated governance"]
   D --> J["smoke/browser harness"]
   E --> K["pre-push / post-merge enforcement"]
+  E2 --> K2["remote CI enforcement"]
   F --> L["canonical docs"]
   F --> M["generated docs"]
   H --> N[".agent-context/"]
@@ -197,6 +199,10 @@ Installed hooks:
 - `.githooks/pre-push`
 - `.githooks/post-merge`
 
+Installed workflows:
+
+- `.github/workflows/ci.yml`
+
 Related scripts:
 
 - `install-git-hooks.sh`
@@ -210,6 +216,7 @@ Purpose:
 - keep context artifacts current
 - keep the branch synced with the configured main branch
 - gate pushes on docs/context checks and optional project checks/builds
+- mirror those merge barriers in remote CI
 
 ### 6. Harness Layer
 
