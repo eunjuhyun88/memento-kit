@@ -91,6 +91,7 @@
 - `docs/CONTEXT_PLATFORM.md`
 - `docs/CONTEXTUAL_RETRIEVAL.md`
 - `docs/CI_PIPELINE.md`
+- `docs/AUTOPILOT.md`
 - `docs/AGENT_FACTORY.md`
 - `docs/TOOL_DESIGN.md`
 - `docs/AGENT_OBSERVABILITY.md`
@@ -122,6 +123,7 @@
 - `scripts/dev/context-restore.sh`
 - `scripts/dev/context-pin.sh`
 - `scripts/dev/context-auto.sh`
+- `scripts/dev/context-autopilot.mjs`
 - `scripts/dev/ci-install-deps.sh`
 - `scripts/dev/run-ci-context.sh`
 - `scripts/dev/bootstrap-claude-compat.mjs`

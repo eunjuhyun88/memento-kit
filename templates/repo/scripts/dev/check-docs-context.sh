@@ -128,6 +128,7 @@ REQUIRED_FILES=(
 	"docs/CONTEXT_PLATFORM.md"
 	"docs/CONTEXTUAL_RETRIEVAL.md"
 	"docs/CI_PIPELINE.md"
+	"docs/AUTOPILOT.md"
 	"docs/AGENT_FACTORY.md"
 	"docs/TOOL_DESIGN.md"
 	"docs/AGENT_OBSERVABILITY.md"
@@ -197,6 +198,7 @@ REQUIRED_FILES=(
 	"scripts/dev/context-restore.sh"
 	"scripts/dev/context-pin.sh"
 	"scripts/dev/context-auto.sh"
+	"scripts/dev/context-autopilot.mjs"
 	"scripts/dev/ci-install-deps.sh"
 	"scripts/dev/run-ci-context.sh"
 	"scripts/dev/bootstrap-project-truth.mjs"
@@ -344,6 +346,8 @@ require_text "docs/CLAUDE_COMPATIBILITY.md" "## Mapping" "Claude compatibility m
 require_text "docs/CLAUDE_COMPATIBILITY.md" "## Local Guidance Bootstrap" "Claude local guidance bootstrap"
 require_text "docs/CONTEXT_EVALUATION.md" "## What To Measure" "context evaluation metrics"
 require_text "docs/CONTEXT_EVALUATION.md" "## Final Context Acceptance" "final context acceptance"
+require_text "docs/AUTOPILOT.md" "## Automatic Stages" "autopilot automatic stages"
+require_text "docs/AUTOPILOT.md" "## Checkpoint Rule" "autopilot checkpoint rule"
 require_text "docs/CONTEXT_PLATFORM.md" "## Registry Model" "context registry model"
 require_text "docs/AGENT_FACTORY.md" "## Manifest Contract" "agent manifest contract"
 require_text "docs/TOOL_DESIGN.md" "## Tool Contract Shape" "tool contract shape"
@@ -392,6 +396,7 @@ require_text ".claude/README.md" "## What Lives Here" "Claude router inventory"
 require_text ".claude/agents/README.md" "## Included Defaults" "Claude agents defaults"
 require_text ".claude/commands/README.md" "## Included Defaults" "Claude commands defaults"
 require_text ".claude/hooks/README.md" "## Included Hooks" "Claude hooks defaults"
+require_text ".githooks/pre-push" "context-autopilot.mjs" "pre-push autopilot invocation"
 
 require_max_lines "AGENTS.md" 140
 require_max_lines "ARCHITECTURE.md" 120

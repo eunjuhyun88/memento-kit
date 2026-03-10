@@ -22,6 +22,7 @@ Reusable bootstrap kit for turning a repository into an agent-first workspace wi
 - git hooks that enforce context discipline
 - push-time coordination checks for parallel agent work
 - GitHub Actions CI template for remote context and merge enforcement
+- autopilot rules that keep checkpoints, claims, and compaction from being forgotten
 - an optional agent-memory workspace bootstrap for identity, lessons, heartbeat, and layered memory
 - an optional runtime workspace bootstrap for session boot, nightly distill, memory indexing, and cross-agent relay
 
@@ -32,6 +33,7 @@ It now also includes:
 - an explicit `CONTEXT_ENGINEERING.md` layer in installed repos
 - a `CONTEXT_EVALUATION.md` measurement guide
 - a `CLAUDE_COMPATIBILITY.md` layer for Claude-native repo setup
+- an `AUTOPILOT.md` layer for automatic context discipline
 - a generated `context-efficiency-report.md`
 - a generated `context-registry.md` + `context-registry.json`
 - a generated `contextual-retrieval.md` + `contextual-retrieval-index.json`

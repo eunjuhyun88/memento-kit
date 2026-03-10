@@ -20,10 +20,11 @@ Purpose:
 10. `docs/AGENT_OBSERVABILITY.md` when work needs runtime evidence or value measurement
 11. `docs/CONTEXT_PLATFORM.md` for registry, open-source, or public evaluation work
 12. `docs/MULTI_AGENT_COORDINATION.md` when parallel work is possible
-13. `docs/GIT_WORKFLOW.md` when branching, syncing, or merge discipline matters
-14. `docs/CI_PIPELINE.md` when remote checks, merge criteria, or branch protection matter
-15. `docs/README.md`
-16. the smallest relevant canonical doc subset
+13. `docs/AUTOPILOT.md` when automatic checkpoint/claim/save behavior matters
+14. `docs/GIT_WORKFLOW.md` when branching, syncing, or merge discipline matters
+15. `docs/CI_PIPELINE.md` when remote checks, merge criteria, or branch protection matter
+16. `docs/README.md`
+17. the smallest relevant canonical doc subset
 
 ## Active Boundaries
 
@@ -66,6 +67,7 @@ Purpose:
 | runtime telemetry and time-saved evidence | `docs/AGENT_OBSERVABILITY.md` | `docs/generated/agent-usage-report.md`, `npm run agent:start`, `npm run agent:finish`, `npm run agent:report` |
 | registry/API, open-source packaging, public evaluation | `docs/CONTEXT_PLATFORM.md` | `docs/generated/context-registry.md`, `docs/generated/context-ab-report.md`, `npm run registry:describe -- --kind "<kind>" --id "<id>"` |
 | concurrent ownership, handoff, path boundaries | `docs/MULTI_AGENT_COORDINATION.md` | `context-kit.json`, `.agent-context/coordination/`, `scripts/dev/check-agent-coordination.mjs` |
+| automatic checkpoint, claim, save, compact behavior | `docs/AUTOPILOT.md` | `context-kit.json`, `scripts/dev/context-autopilot.mjs`, `.claude/hooks/`, `.githooks/pre-push` |
 | branch/worktree/sync discipline | `docs/GIT_WORKFLOW.md` | `scripts/dev/safe-status.sh`, `scripts/dev/new-worktree.sh`, `scripts/dev/sync-branch.sh`, `scripts/dev/bootstrap-git-config.sh` |
 | remote checks, merge rules, branch protection | `docs/CI_PIPELINE.md` | `.github/workflows/ci.yml`, `scripts/dev/ci-install-deps.sh`, `scripts/dev/run-ci-context.sh`, `scripts/dev/run-configured-command.sh` |
 | current design authority | `docs/DESIGN.md` | `docs/design-docs/index.md`, active plans |

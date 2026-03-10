@@ -28,6 +28,7 @@ const scripts = {
   'ctx:restore': 'bash scripts/dev/context-restore.sh',
   'ctx:pin': 'bash scripts/dev/context-pin.sh',
   'ctx:auto': 'bash scripts/dev/context-auto.sh',
+  'auto:run': 'node scripts/dev/context-autopilot.mjs',
   'adopt:bootstrap': 'node scripts/dev/bootstrap-project-truth.mjs && node scripts/dev/bootstrap-claude-compat.mjs',
   'claude:bootstrap': 'node scripts/dev/bootstrap-claude-compat.mjs',
   'coord:claim': 'node scripts/dev/claim-work.mjs',

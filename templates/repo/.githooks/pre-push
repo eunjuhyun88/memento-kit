@@ -16,7 +16,10 @@ MAIN_BRANCH="${MAIN_BRANCH:-main}"
 echo "[pre-push] branch: $CURRENT_BRANCH"
 echo "[pre-push] main branch: $MAIN_BRANCH"
 
-if [ -f scripts/dev/context-auto.sh ]; then
+if [ -f scripts/dev/context-autopilot.mjs ]; then
+	echo "[pre-push] autopilot"
+	node scripts/dev/context-autopilot.mjs pre-push || true
+elif [ -f scripts/dev/context-auto.sh ]; then
 	echo "[pre-push] context auto snapshot"
 	bash scripts/dev/context-auto.sh pre-push || true
 fi

@@ -220,8 +220,28 @@ PY
 	    "sharedPathPrefixes": [
       "docs/AGENT_WATCH_LOG.md",
       "docs/generated/",
-      ".agent-context/"
+	      ".agent-context/"
 	    ]
+	  },
+	  "autopilot": {
+	    "enabled": true,
+	    "agentId": "autopilot",
+	    "autoSave": true,
+	    "autoCheckpoint": true,
+	    "autoClaim": true,
+	    "autoCompactOnStop": true,
+	    "autoCompactOnPreCompact": true,
+	    "minimumClaimPathDepth": 2,
+	    "defaultSurface": "$(printf '%s' "$PROJECT_SURFACES" | cut -d',' -f1 | tr -d ' ')",
+	    "defaultObjectivePrefix": "Resume branch work on",
+	    "defaultDocs": [
+	      "README.md",
+	      "AGENTS.md",
+	      "docs/README.md",
+	      "ARCHITECTURE.md",
+	      "docs/CONTEXT_ENGINEERING.md"
+	    ],
+	    "minIntervalSec": 300
 	  },
 	  "registry": {
 	    "enabled": true,

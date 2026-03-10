@@ -4,6 +4,8 @@ set -euo pipefail
 ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT_DIR"
 
-if [ -f "scripts/dev/context-compact.sh" ]; then
+if [ -f "scripts/dev/context-autopilot.mjs" ]; then
+	node scripts/dev/context-autopilot.mjs pre-compact >/dev/null 2>&1 || true
+elif [ -f "scripts/dev/context-compact.sh" ]; then
 	bash scripts/dev/context-compact.sh >/dev/null 2>&1 || true
 fi

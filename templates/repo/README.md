@@ -42,9 +42,10 @@ The goal is not to read more files. The goal is to read the right files first.
 9. Agent runtime telemetry: `docs/AGENT_OBSERVABILITY.md`
 10. Open-source platform layers: `docs/CONTEXT_PLATFORM.md`, `docs/SANDBOX_POLICY.md`
 11. Parallel-agent ownership and handoff: `docs/MULTI_AGENT_COORDINATION.md`
-12. Git operating rules: `docs/GIT_WORKFLOW.md`
-13. Remote CI and merge criteria: `docs/CI_PIPELINE.md`
-14. Stable canonical entry docs:
+12. Automatic context/claim rules: `docs/AUTOPILOT.md`
+13. Git operating rules: `docs/GIT_WORKFLOW.md`
+14. Remote CI and merge criteria: `docs/CI_PIPELINE.md`
+15. Stable canonical entry docs:
    - `docs/DESIGN.md`
    - `docs/ENGINEERING.md`
    - `docs/PLANS.md`
@@ -53,7 +54,7 @@ The goal is not to read more files. The goal is to read the right files first.
    - `docs/RELIABILITY.md`
    - `docs/SECURITY.md`
    - `docs/HARNESS.md`
-15. Historical material: `docs/archive/`
+16. Historical material: `docs/archive/`
 
 ## 2) Quick Start
 
@@ -74,6 +75,12 @@ npm run safe:status
 - `npm run ctx:restore -- --mode brief`
 - `npm run ctx:restore -- --mode handoff`
 - `npm run ctx:pin`
+
+## 3.0) Autopilot
+
+- `npm run auto:run -- <stage>`
+- stages: `session-start`, `post-edit`, `pre-compact`, `stop`, `pre-push`
+- purpose: automatically keep snapshots, provisional checkpoints, and provisional claims from being forgotten
 
 ## 3.1) Coordination Commands
 
@@ -149,6 +156,7 @@ Project-specific truth for this kit lives in:
 - `docs/CLAUDE_COMPATIBILITY.md`
 - `docs/CONTEXT_PLATFORM.md`
 - `docs/CONTEXTUAL_RETRIEVAL.md`
+- `docs/AUTOPILOT.md`
 - `docs/AGENT_FACTORY.md`
 - `docs/TOOL_DESIGN.md`
 - `docs/AGENT_OBSERVABILITY.md`

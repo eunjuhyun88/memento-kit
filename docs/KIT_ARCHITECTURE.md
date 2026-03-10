@@ -9,6 +9,7 @@ The kit exists to turn a repository into an agent-first workspace with:
 - reusable agent blueprint routing
 - runtime usage telemetry
 - semantic runtime memory
+- automatic checkpoint/claim/save discipline
 - multi-agent ownership control
 - generated navigation artifacts
 - mechanical drift detection
@@ -117,6 +118,7 @@ Installed scripts:
 - `context-restore.sh`
 - `check-context-quality.sh`
 - `context-auto.sh`
+- `context-autopilot.mjs`
 - `context-pin.sh`
 - `claim-work.mjs`
 - `list-work-claims.mjs`
@@ -142,6 +144,7 @@ Purpose:
 - generate fast resume artifacts
 - separate durable documentation from per-branch runtime memory
 - make parallel ownership visible and machine-checkable
+- keep checkpoint and claim discipline from depending on agent memory alone
 
 ### 4. Generated Governance Layer
 

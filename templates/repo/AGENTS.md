@@ -14,17 +14,18 @@ This file defines mandatory execution rules for coding agents in `__PROJECT_NAME
 8. If the task needs measured runtime evidence or time-saved tracking, open `docs/AGENT_OBSERVABILITY.md`.
 9. If the task affects registry/API, public evaluation, or safety boundaries, open `docs/CONTEXT_PLATFORM.md` and `docs/SANDBOX_POLICY.md`.
 10. If the task affects Claude-native commands, hooks, or local risk guidance, open `docs/CLAUDE_COMPATIBILITY.md` and `.claude/README.md`.
-11. If the task involves branching, syncing, worktrees, CI, or merge discipline, open `docs/GIT_WORKFLOW.md` and `docs/CI_PIPELINE.md`.
-12. Run `git status --short --branch`.
-13. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
-14. On feature branches, create or refresh a coordination claim:
+11. If the task involves automatic checkpoint/claim/save behavior, open `docs/AUTOPILOT.md`.
+12. If the task involves branching, syncing, worktrees, CI, or merge discipline, open `docs/GIT_WORKFLOW.md` and `docs/CI_PIPELINE.md`.
+13. Run `git status --short --branch`.
+14. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
+15. On feature branches, create or refresh a coordination claim:
    - `npm run coord:claim -- --work-id "<W-ID>" --agent "<agent>" --surface "<surface>" --summary "<summary>" --path "<prefix>"`
    - do not start meaningful edits on a feature branch without at least one claimed path prefix
-15. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
-16. Run `npm run safe:status`.
-17. For non-trivial work, create a semantic checkpoint:
+16. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
+17. Run `npm run safe:status`.
+18. For non-trivial work, create a semantic checkpoint:
    - `npm run ctx:checkpoint -- --work-id "<W-ID>" --surface "<surface>" --objective "<objective>"`
-18. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
+19. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
 
 ## Mandatory Validation Gate
 

@@ -15,6 +15,7 @@ After installation, you get:
 - semantic resume tools: checkpoint / brief / handoff
 - git workflow rules + repo-local git config bootstrap
 - GitHub Actions CI workflow for remote merge enforcement
+- autopilot rules for automatic checkpoint/claim/save discipline
 - registry / retrieval / agent / tool catalogs
 - value and validation reports
 - a bootstrap guide for turning skeleton docs into project truth
