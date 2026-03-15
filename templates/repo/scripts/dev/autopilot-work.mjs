@@ -110,6 +110,70 @@ function autopilotConfig(config) {
   };
 }
 
+function actionablePointer(pointerClaim, pointerItem, orchestration, options) {
+  if (pointerClaim) return true;
+  if (!pointerItem) return false;
+  if (orchestration.terminalStatuses.includes(pointerItem.status)) return false;
+  const surface = options.surface || pointerItem.surface || '';
+  const summary = options.summary || pointerItem.summary || pointerItem.title || '';
+  return Boolean(surface && summary);
+}
+
+function cleanupStalePointers(rootDir, branch, workId, options) {
+  const files = Object.values(pointerPaths(rootDir, branch));
+  const existing = files.filter((filePath) => fs.existsSync(filePath));
+  if (existing.length === 0) return;
+  const renderedFiles = existing.map((filePath) => path.relative(rootDir, filePath));
+  if (options.dryRun) {
+    console.log(`[pilot] dry-run: clear stale pointers for \`${workId}\` from ${renderedFiles.join(', ')}`);
+    return;
+  }
+  for (const filePath of existing) {
+    fs.rmSync(filePath, { force: true });
+  }
+  console.log(`[pilot] cleared stale pointers for \`${workId}\` from ${renderedFiles.join(', ')}`);
+}
+
+function syncResolvedPointers(rootDir, branch, workId, options) {
+  const files = pointerPaths(rootDir, branch);
+  const updates = [];
+
+  let branchPointerNeedsWrite = true;
+  if (fs.existsSync(files.branchPointer)) {
+    try {
+      const current = JSON.parse(fs.readFileSync(files.branchPointer, 'utf8'));
+      branchPointerNeedsWrite = current?.workId !== workId || current?.branch !== branch;
+    } catch {
+      branchPointerNeedsWrite = true;
+    }
+  }
+  if (branchPointerNeedsWrite) {
+    updates.push({
+      filePath: files.branchPointer,
+      content: `${JSON.stringify({ workId, branch, updatedAt: new Date().toISOString() }, null, 2)}\n`,
+    });
+  }
+
+  for (const filePath of [files.latestWorkId, files.legacyWorkId]) {
+    const current = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf8').trim() : '';
+    if (current !== workId) {
+      updates.push({ filePath, content: `${workId}\n` });
+    }
+  }
+
+  if (updates.length === 0) return;
+  const renderedFiles = updates.map((entry) => path.relative(rootDir, entry.filePath));
+  if (options.dryRun) {
+    console.log(`[pilot] dry-run: sync branch/runtime pointers to \`${workId}\` in ${renderedFiles.join(', ')}`);
+    return;
+  }
+  for (const entry of updates) {
+    fs.mkdirSync(path.dirname(entry.filePath), { recursive: true });
+    fs.writeFileSync(entry.filePath, entry.content);
+  }
+  console.log(`[pilot] synced branch/runtime pointers to \`${workId}\` in ${renderedFiles.join(', ')}`);
+}
+
 function execStep(rootDir, options, command, args) {
   const printable = [command, ...args].map(shellQuote).join(' ');
   console.log(options.dryRun ? `[pilot] dry-run: ${printable}` : `[pilot] run: ${printable}`);
@@ -243,23 +307,34 @@ function resolveSelection(rootDir, config, options) {
   const branch = currentBranch(rootDir);
   const claims = readClaims(rootDir);
   const branchClaim = claims.find((claim) => claim.branch === branch) ?? null;
-  const pointerWorkId = readBranchPointerWorkId(rootDir, branch);
   const rawItems = readWorkItems(rootDir, config);
   const items = rawItems.map((item) => ({
     ...item,
     ...resolveDependencyState(item, rawItems, orchestration),
   }));
+  const pointerWorkId = readBranchPointerWorkId(rootDir, branch);
+  const pointerClaim = pointerWorkId ? claims.find((claim) => claim.workId === pointerWorkId) ?? null : null;
+  const pointerItem = pointerWorkId ? items.find((item) => item.workId === pointerWorkId) ?? null : null;
 
   let source = 'explicit';
   let resolvedWorkId = options.workId;
+  let ignoredPointerWorkId = '';
 
   if (!resolvedWorkId && branchClaim?.workId) {
     resolvedWorkId = branchClaim.workId;
     source = 'branch-claim';
-  } else if (!resolvedWorkId && pointerWorkId) {
+  } else if (
+    !resolvedWorkId &&
+    pointerWorkId &&
+    actionablePointer(pointerClaim, pointerItem, orchestration, options)
+  ) {
     resolvedWorkId = pointerWorkId;
     source = 'branch-pointer';
-  } else if (!resolvedWorkId && options.pick === 'ready') {
+  } else if (!resolvedWorkId && pointerWorkId) {
+    ignoredPointerWorkId = pointerWorkId;
+  }
+
+  if (!resolvedWorkId && options.pick === 'ready') {
     if (!autopilotConfig(config).allowReadyQueuePickup) {
       throw new Error('[pilot] ready-queue pickup is disabled in context-kit.json');
     }
@@ -278,7 +353,15 @@ function resolveSelection(rootDir, config, options) {
   }
 
   if (!resolvedWorkId) {
+    if (ignoredPointerWorkId) {
+      cleanupStalePointers(rootDir, branch, ignoredPointerWorkId, options);
+      throw new Error(`[pilot] ignored stale branch/runtime pointer \`${ignoredPointerWorkId}\`; provide --work-id or --pick ready`);
+    }
     throw new Error('[pilot] resolve a work item with --work-id, an active branch pointer, or --pick ready');
+  }
+
+  if (ignoredPointerWorkId) {
+    cleanupStalePointers(rootDir, branch, ignoredPointerWorkId, options);
   }
 
   const workItem = items.find((item) => item.workId === resolvedWorkId) ?? null;
@@ -302,6 +385,10 @@ function resolveSelection(rootDir, config, options) {
 
   if (selection.surface) {
     validateSurfaceId(config, selection.surface);
+  }
+
+  if (selection.source === 'branch-claim') {
+    syncResolvedPointers(rootDir, branch, selection.workId, options);
   }
 
   return selection;

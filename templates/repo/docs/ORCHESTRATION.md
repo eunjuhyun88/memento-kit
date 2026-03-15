@@ -93,6 +93,7 @@ Rules:
 
 - keep it opt-in by command, not background magic
 - prefer `workId` first, then branch pointer, then `--pick ready`
+- ignore and clear stale branch/runtime pointers that no longer resolve to actionable work
 - never merge, push, or delete branches
 - keep `--pick ready` dependency-aware and claim-aware
 - use `--force` only when a human intentionally wants to bypass queue state
