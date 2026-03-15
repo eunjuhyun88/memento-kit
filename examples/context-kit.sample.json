@@ -88,6 +88,15 @@
     ],
     "enforceClaimSync": true
   },
+  "autopilot": {
+    "enabled": true,
+    "allowReadyQueuePickup": true,
+    "defaultAgent": "agent",
+    "runSaveAfterStart": true,
+    "runCompactAfterStart": true,
+    "runCompactAfterSync": true,
+    "runOrchestrationCheck": true
+  },
   "registry": {
     "enabled": true,
     "manifestPath": "docs/generated/context-registry.json",

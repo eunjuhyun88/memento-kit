@@ -14,6 +14,7 @@ Prevent context loss and reduce restart cost across long-running agent work.
 - `handoff`: fuller transfer
 - `resume`: active-work bundle that resolves the current claim/work state first
 - `claim`: multi-agent ownership and path boundary
+- `autopilot`: optional session boot wrapper around claim, checkpoint, resume, save, and compact
 
 ## 3) Core Commands
 
@@ -27,11 +28,14 @@ Prevent context loss and reduce restart cost across long-running agent work.
 - `npm run coord:claim`
 - `npm run coord:check`
 - `npm run coord:release`
+- `npm run pilot:start`
+- `npm run pilot:sync`
 
 ## 4) Rules
 
 - use checkpoints for non-trivial work
 - use `ctx:resume` first so the active work id, claim, brief, and handoff are resolved together
+- use `pilot:start` only when the session should claim or pick work on purpose
 - use briefs for fast resume when the active work id is already obvious
 - keep pinned facts durable and minimal
 - do not commit runtime memory

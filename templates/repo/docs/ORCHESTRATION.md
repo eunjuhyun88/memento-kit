@@ -65,6 +65,12 @@ Guideline:
   - machine-readable queue surface
 - `npm run orch:check`
   - validate dependency graph, claim sync, and handoff completeness
+- `npm run pilot:start -- --work-id <id>`
+  - claim, checkpoint, resume, save, and compact a specific item
+- `npm run pilot:start -- --pick ready --agent <agent>`
+  - pick the highest-priority ready item and boot the session safely
+- `npm run pilot:sync -- --work-id <id>`
+  - refresh snapshot + brief/handoff artifacts for the current task
 
 ## Sync Rules
 
@@ -76,6 +82,28 @@ The orchestration layer should reduce coordination overhead, not duplicate it ma
 - `ctx:resume` should show orchestration state when a matching work item exists
 
 If orchestration is enabled, treat claims as execution locks and work items as the queue / dependency graph.
+
+## Optional Autopilot
+
+The autopilot layer is optional and intentionally narrow.
+
+It exists to reduce repeated session boot steps, not to replace judgment.
+
+Rules:
+
+- keep it opt-in by command, not background magic
+- prefer `workId` first, then branch pointer, then `--pick ready`
+- never merge, push, or delete branches
+- keep `--pick ready` dependency-aware and claim-aware
+- use `--force` only when a human intentionally wants to bypass queue state
+
+Recommended use:
+
+1. queue work with `orch:work`
+2. mark items `ready` only when dependencies are actually clear
+3. start with `pilot:start`
+4. keep saving/compacting during work with `pilot:sync` or the lower-level `ctx:*` commands
+5. release with `coord:release`
 
 ## Runtime Artifacts
 

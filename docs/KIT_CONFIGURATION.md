@@ -65,6 +65,15 @@ This file is intentionally small and repo-local. It is the bridge between:
     "terminalStatuses": ["done", "abandoned"],
     "enforceClaimSync": true
   },
+  "autopilot": {
+    "enabled": true,
+    "allowReadyQueuePickup": true,
+    "defaultAgent": "agent",
+    "runSaveAfterStart": true,
+    "runCompactAfterStart": true,
+    "runCompactAfterSync": true,
+    "runOrchestrationCheck": true
+  },
   "registry": {
     "enabled": true,
     "manifestPath": "docs/generated/context-registry.json",
@@ -276,6 +285,28 @@ Used by:
 - `claim-work.mjs`
 - `release-work.mjs`
 - `context-restore.sh`
+
+## `autopilot`
+
+Purpose:
+
+- add an opt-in session bootstrap above raw `ctx:*`, `coord:*`, and `orch:*` commands
+- keep restart flow centered on a `workId`, not a long chat transcript
+- let a repo safely pick the next ready item without adding merge or push automation
+
+Fields:
+
+- `enabled`
+- `allowReadyQueuePickup`
+- `defaultAgent`
+- `runSaveAfterStart`
+- `runCompactAfterStart`
+- `runCompactAfterSync`
+- `runOrchestrationCheck`
+
+Used by:
+
+- `autopilot-work.mjs`
 
 ## `tools`
 

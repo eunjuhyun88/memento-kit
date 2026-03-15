@@ -35,6 +35,8 @@ const scripts = {
   'orch:work': 'node scripts/dev/orchestrate-work.mjs',
   'orch:list': 'node scripts/dev/list-orchestration-work.mjs',
   'orch:check': 'node scripts/dev/check-orchestration-work.mjs',
+  'pilot:start': 'node scripts/dev/autopilot-work.mjs --mode start',
+  'pilot:sync': 'node scripts/dev/autopilot-work.mjs --mode sync',
   'agent:refresh': 'node scripts/dev/refresh-agent-catalog.mjs && node scripts/dev/refresh-context-registry.mjs',
   'agent:new': 'node scripts/dev/scaffold-agent.mjs',
   'agent:start': 'node scripts/dev/start-agent-run.mjs',

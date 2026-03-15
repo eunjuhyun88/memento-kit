@@ -90,6 +90,8 @@ npm run safe:status
 - `npm run orch:list`
 - `npm run orch:list -- --json`
 - `npm run orch:check`
+- `npm run pilot:start`
+- `npm run pilot:sync`
 
 ## 3.2) Git Commands
 
@@ -136,6 +138,8 @@ npm run safe:status
    - dependency-aware queue record linked to a work ID
 7. `orchestration board`
    - runtime-ready summary of ready, active, blocked, and handoff work
+8. `autopilot session`
+   - optional start/sync wrapper that keeps resume-first flows structured
 
 Paths:
 

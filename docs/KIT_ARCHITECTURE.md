@@ -118,6 +118,7 @@ Installed scripts:
 - `check-context-quality.sh`
 - `context-auto.sh`
 - `context-pin.sh`
+- `autopilot-work.mjs`
 - `claim-work.mjs`
 - `list-work-claims.mjs`
 - `check-agent-coordination.mjs`
@@ -148,6 +149,7 @@ Purpose:
 - separate durable documentation from per-branch runtime memory
 - make parallel ownership visible and machine-checkable
 - make work dependencies and ready queues visible without overloading the claim system
+- keep session restart flows reproducible without depending on long terminal history
 
 ### 4. Generated Governance Layer
 

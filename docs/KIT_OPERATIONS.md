@@ -52,6 +52,9 @@ Use:
 - `npm run ctx:restore -- --mode brief`
 - `npm run coord:list -- --json`
 - `npm run orch:list -- --json`
+- `npm run pilot:start -- --work-id "<W-ID>" --agent "<agent>"`
+- `npm run pilot:start -- --pick ready --agent "<agent>"`
+- `npm run pilot:sync -- --work-id "<W-ID>"`
 - `npm run agent:new -- --id "<agent-id>" --role "<role>" --surface "<surface>"`
 - `npm run agent:start -- --agent "<agent-id>" --surface "<surface>"`
 - `npm run agent:event -- --type doc_open --path "<repo-path>"`
@@ -69,6 +72,7 @@ Guideline:
 - keep watch log as evidence only
 - resume from `ctx:resume` first so the current claim/work pointer decides which brief and handoff matter
 - use orchestration when the team needs dependency order or a machine-readable ready queue
+- use autopilot only when the team wants a structured session bootstrap, not background automation
 
 ## Before Push
 
@@ -168,6 +172,7 @@ Guideline:
 
 - `coord:*` owns lock/branch/path safety
 - `orch:*` owns dependency order, queue visibility, and handoff routing
+- `pilot:*` owns opt-in session boot and sync on top of those lower-level commands
 
 ## Harness Workflow
 

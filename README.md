@@ -8,6 +8,7 @@ Reusable bootstrap kit for turning a repository into an agent-first workspace wi
 - semantic context checkpoints, briefs, and handoffs
 - multi-agent claims, leases, and conflict checks
 - dependency-aware work orchestration and ready queues
+- optional session autopilot for resume-first claim/checkpoint/sync flows
 - generated route/store/API maps
 - legacy-doc hygiene checks
 - smoke/browser harness scripts
@@ -259,7 +260,14 @@ bash /path/to/memento-kit/setup-runtime.sh \
    npm run orch:list -- --ready-only
    npm run orch:check
    ```
-12. Start using semantic checkpoints:
+12. If you want a safer session bootstrap above the raw `ctx:*` and `coord:*` commands:
+   ```bash
+   npm run pilot:start -- --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" --agent "codex"
+   npm run pilot:start -- --pick ready --agent "codex"
+   npm run pilot:sync -- --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex"
+   ```
+   This layer stays opt-in, never merges or pushes, and is designed around fresh-context restart rather than long chat continuity.
+13. Start using semantic checkpoints:
    ```bash
    npm run ctx:checkpoint -- \
      --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" \
