@@ -7,6 +7,7 @@ Reusable bootstrap kit for turning a repository into an agent-first workspace wi
 - canonical docs routing
 - semantic context checkpoints, briefs, and handoffs
 - multi-agent claims, leases, and conflict checks
+- dependency-aware work orchestration and ready queues
 - generated route/store/API maps
 - legacy-doc hygiene checks
 - smoke/browser harness scripts
@@ -42,6 +43,7 @@ It now also includes:
 - a generated `project-truth-bootstrap.md`
 - a repeated `harness:benchmark` runtime/noise benchmark
 - a `MULTI_AGENT_COORDINATION.md` coordination layer in installed repos
+- a `ORCHESTRATION.md` workboard layer in installed repos
 - a `CONTEXT_PLATFORM.md` + `SANDBOX_POLICY.md` layer for open-source discovery and execution boundaries
 - a separate `setup-memory.sh` bootstrap for agent-local memory workspaces
 - line-budget enforcement for the small map
@@ -88,6 +90,7 @@ Optional runtime workspace bootstrap:
   - `CLAUDE.md`
   - `ARCHITECTURE.md`
   - `context-kit.json`
+  - `docs/ORCHESTRATION.md`
 - Claude-native layer:
   - `docs/CLAUDE_COMPATIBILITY.md`
   - `.claude/settings.json`
@@ -220,6 +223,11 @@ bash /path/to/memento-kit/setup-runtime.sh \
    npm run value:demo
    npm run sandbox:check
    ```
+   For resume-first operation after a pause or handoff:
+   ```bash
+   npm run ctx:resume
+   npm run coord:list -- --json
+   ```
 9. Record at least one routed-vs-baseline comparison:
    ```bash
    npm run eval:ab:record -- \
@@ -241,7 +249,17 @@ bash /path/to/memento-kit/setup-runtime.sh \
      --path "src/routes/core"
    ```
    Feature branches should claim at least one explicit path boundary.
-11. Start using semantic checkpoints:
+11. If work must be sequenced across dependencies or handoffs, use the orchestration layer:
+   ```bash
+   npm run orch:work -- \
+     --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" \
+     --title "describe the queued work item" \
+     --surface "core" \
+     --status ready
+   npm run orch:list -- --ready-only
+   npm run orch:check
+   ```
+12. Start using semantic checkpoints:
    ```bash
    npm run ctx:checkpoint -- \
      --work-id "W-$(date +%Y%m%d-%H%M)-myproject-codex" \
@@ -262,6 +280,7 @@ bash /path/to/memento-kit/setup-runtime.sh \
 - Tool contracts exist so outsiders can discover reusable capabilities without hidden prompt glue.
 - Runtime workspaces exist so session boot, nightly distill, and cross-agent relay stay separate from both project truth and agent identity.
 - Runtime telemetry exists so time-saved claims are inspectable instead of anecdotal.
+- Work orchestration exists so dependency order and handoff routing survive beyond the original chat.
 - Contextual retrieval exists to reduce ambiguous full-doc scans.
 - Final context acceptance requires both structural savings and repeated runtime stability.
 - Open-source adoption requires a visible registry, A/B evidence, and a visible sandbox boundary.

@@ -53,6 +53,18 @@ This file is intentionally small and repo-local. It is the bridge between:
       ".agent-context/"
     ]
   },
+  "orchestration": {
+    "enabled": true,
+    "workItemsDir": ".agent-context/orchestration/work-items",
+    "boardPath": ".agent-context/orchestration/board.md",
+    "summaryPath": ".agent-context/orchestration/summary.json",
+    "defaultStatus": "planned",
+    "readyStatuses": ["ready"],
+    "activeStatuses": ["active"],
+    "blockedStatuses": ["blocked", "handoff"],
+    "terminalStatuses": ["done", "abandoned"],
+    "enforceClaimSync": true
+  },
   "registry": {
     "enabled": true,
     "manifestPath": "docs/generated/context-registry.json",
@@ -234,6 +246,36 @@ Used by:
 - `refresh-agent-catalog.mjs`
 - `refresh-context-registry.mjs`
 - `check-docs-context.sh`
+
+## `orchestration`
+
+Purpose:
+
+- keep dependency sequencing separate from raw path ownership
+- expose a machine-readable ready queue for automation or supervisors
+- keep handoff routing visible after the original chat is gone
+
+Fields:
+
+- `enabled`
+- `workItemsDir`
+- `boardPath`
+- `summaryPath`
+- `defaultStatus`
+- `readyStatuses`
+- `activeStatuses`
+- `blockedStatuses`
+- `terminalStatuses`
+- `enforceClaimSync`
+
+Used by:
+
+- `orchestrate-work.mjs`
+- `list-orchestration-work.mjs`
+- `check-orchestration-work.mjs`
+- `claim-work.mjs`
+- `release-work.mjs`
+- `context-restore.sh`
 
 ## `tools`
 

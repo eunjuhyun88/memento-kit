@@ -370,6 +370,8 @@ cat > "$STATE_FILE" <<EOF
   "nextActions": "$(json_escape "$NEXT_ACTIONS")",
   "head": "$(json_escape "$HEAD_SHA")",
   "checkpointPresent": $HAS_CHECKPOINT,
+  "snapshotPath": "$(json_escape "${SOURCE_FILE#$ROOT_DIR/}")",
+  "checkpointPath": "$(json_escape "$( [ "$HAS_CHECKPOINT" -eq 1 ] && printf '%s' "${CHECKPOINT_FILE#$ROOT_DIR/}" )")",
   "validation": {
     "docsCheck": "unknown",
     "check": "unknown",
@@ -403,6 +405,7 @@ printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
 	"${HANDOFF_WORK_FILE#$ROOT_DIR/}" >> "$CATALOG_FILE"
 
 printf '%s\n' "$WORK_ID_EFFECTIVE" > "$RUNTIME_DIR/${BRANCH_SAFE}.latest-work-id"
+printf '%s\n' "$WORK_ID_EFFECTIVE" > "$RUNTIME_DIR/${BRANCH_SAFE}.work-id"
 
 echo "[ctx:compact] source: ${SOURCE_FILE#$ROOT_DIR/}"
 if [ "$HAS_CHECKPOINT" -eq 1 ]; then

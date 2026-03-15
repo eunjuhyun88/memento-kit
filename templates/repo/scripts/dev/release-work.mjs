@@ -11,6 +11,7 @@ import {
   withCoordinationLock,
   writeJson,
 } from './coordination-lib.mjs';
+import { syncReleasedClaimToWorkItem } from './orchestration-lib.mjs';
 
 function usage() {
   console.log('Usage: node scripts/dev/release-work.mjs --work-id <id> [--status <done|handoff|abandoned>] [--note <text>] [--handoff-to <agent>]');
@@ -106,6 +107,10 @@ withCoordinationLock(rootDir, () => {
   }
 
   appendCoordinationEvent(rootDir, [timestamp, 'release', claim.workId, claim.branch ?? '-', claim.agent ?? '-', claim.surface ?? '-', options.status]);
+  const syncedWorkItem = syncReleasedClaimToWorkItem(rootDir, claim, options);
   console.log(`[coord:release] archived: ${path.relative(rootDir, historyPath)}`);
   console.log(`[coord:release] status: ${options.status}`);
+  if (syncedWorkItem) {
+    console.log('[coord:release] orchestration synced');
+  }
 });

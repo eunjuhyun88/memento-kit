@@ -103,6 +103,7 @@ function classify(relPath) {
     'docs/TOOL_DESIGN.md': ['canonical-entry', 'canonical', 'Canonical tool contract design doc.'],
     'docs/AGENT_OBSERVABILITY.md': ['canonical-entry', 'canonical', 'Canonical runtime telemetry and value-evidence doc.'],
     'docs/MULTI_AGENT_COORDINATION.md': ['canonical-entry', 'canonical', 'Canonical multi-agent ownership and conflict-control doc.'],
+    'docs/ORCHESTRATION.md': ['canonical-entry', 'canonical', 'Canonical workboard and dependency-routing doc.'],
     'docs/SANDBOX_POLICY.md': ['canonical-entry', 'canonical', 'Canonical sandbox boundary doc.'],
     'docs/DESIGN.md': ['canonical-entry', 'canonical', 'Canonical design router.'],
     'docs/ENGINEERING.md': ['canonical-entry', 'canonical', 'Canonical engineering/state authority router.'],

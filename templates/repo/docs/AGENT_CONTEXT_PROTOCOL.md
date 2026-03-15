@@ -12,6 +12,7 @@ Prevent context loss and reduce restart cost across long-running agent work.
 - `checkpoint`: semantic memory
 - `brief`: fast resume
 - `handoff`: fuller transfer
+- `resume`: active-work bundle that resolves the current claim/work state first
 - `claim`: multi-agent ownership and path boundary
 
 ## 3) Core Commands
@@ -19,6 +20,7 @@ Prevent context loss and reduce restart cost across long-running agent work.
 - `npm run ctx:save`
 - `npm run ctx:checkpoint`
 - `npm run ctx:compact`
+- `npm run ctx:resume`
 - `npm run ctx:restore -- --mode brief`
 - `npm run ctx:restore -- --mode handoff`
 - `npm run ctx:check -- --strict`
@@ -29,7 +31,8 @@ Prevent context loss and reduce restart cost across long-running agent work.
 ## 4) Rules
 
 - use checkpoints for non-trivial work
-- use briefs for fast resume
+- use `ctx:resume` first so the active work id, claim, brief, and handoff are resolved together
+- use briefs for fast resume when the active work id is already obvious
 - keep pinned facts durable and minimal
 - do not commit runtime memory
 - do not work on a feature branch without an active coordination claim

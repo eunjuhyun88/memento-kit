@@ -174,6 +174,7 @@ fi
 	echo ""
 	echo "## Resume Commands"
 	echo "- npm run safe:status"
+	echo "- npm run ctx:resume"
 	echo "- npm run ctx:compact"
 	echo "- npm run ctx:restore -- --mode brief"
 	echo "- npm run ctx:restore -- --mode handoff"

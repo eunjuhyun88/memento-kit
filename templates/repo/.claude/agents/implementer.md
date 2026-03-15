@@ -15,5 +15,5 @@ Rules:
 
 When resuming:
 
-- prefer `npm run ctx:restore -- --mode brief`
-- use `npm run ctx:restore -- --mode handoff` only when the brief is insufficient
+- prefer `npm run ctx:resume`
+- use `npm run ctx:restore -- --mode handoff` only when the resume bundle is insufficient

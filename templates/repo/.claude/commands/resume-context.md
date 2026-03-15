@@ -3,11 +3,12 @@ description: Rehydrate the current task from Memento working memory and canonica
 ---
 
 1. Run `git status --short --branch`.
-2. Run `npm run ctx:restore -- --mode brief`.
-3. If no brief exists, read `README.md`, `AGENTS.md`, `docs/README.md`, `docs/SYSTEM_INTENT.md`, and `ARCHITECTURE.md`.
-4. Summarize:
+2. Run `npm run ctx:resume`.
+3. If the resume bundle is still insufficient, run `npm run ctx:restore -- --mode handoff`.
+4. If no compacted artifacts exist, read `README.md`, `AGENTS.md`, `docs/README.md`, `docs/SYSTEM_INTENT.md`, and `ARCHITECTURE.md`.
+5. Summarize:
    - current objective
    - next step
    - read-first docs
    - open questions
-5. Do not start in `docs/archive/` unless canonical docs are insufficient.
+6. Do not start in `docs/archive/` unless canonical docs are insufficient.

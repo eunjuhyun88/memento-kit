@@ -20,9 +20,10 @@ Purpose:
 10. `docs/AGENT_OBSERVABILITY.md` when work needs runtime evidence or value measurement
 11. `docs/CONTEXT_PLATFORM.md` for registry, open-source, or public evaluation work
 12. `docs/MULTI_AGENT_COORDINATION.md` when parallel work is possible
-13. `docs/GIT_WORKFLOW.md` when branching, syncing, or merge discipline matters
-14. `docs/README.md`
-15. the smallest relevant canonical doc subset
+13. `docs/ORCHESTRATION.md` when work must be sequenced across dependencies or handoffs
+14. `docs/GIT_WORKFLOW.md` when branching, syncing, or merge discipline matters
+15. `docs/README.md`
+16. the smallest relevant canonical doc subset
 
 ## Active Boundaries
 
@@ -65,6 +66,7 @@ Purpose:
 | runtime telemetry and time-saved evidence | `docs/AGENT_OBSERVABILITY.md` | `docs/generated/agent-usage-report.md`, `npm run agent:start`, `npm run agent:finish`, `npm run agent:report` |
 | registry/API, open-source packaging, public evaluation | `docs/CONTEXT_PLATFORM.md` | `docs/generated/context-registry.md`, `docs/generated/context-ab-report.md`, `npm run registry:describe -- --kind "<kind>" --id "<id>"` |
 | concurrent ownership, handoff, path boundaries | `docs/MULTI_AGENT_COORDINATION.md` | `context-kit.json`, `.agent-context/coordination/`, `scripts/dev/check-agent-coordination.mjs` |
+| dependency queue, ready states, orchestration board | `docs/ORCHESTRATION.md` | `.agent-context/orchestration/board.md`, `.agent-context/orchestration/summary.json`, `npm run orch:list -- --json` |
 | branch/worktree/sync discipline | `docs/GIT_WORKFLOW.md` | `scripts/dev/safe-status.sh`, `scripts/dev/new-worktree.sh`, `scripts/dev/sync-branch.sh`, `scripts/dev/bootstrap-git-config.sh` |
 | current design authority | `docs/DESIGN.md` | `docs/design-docs/index.md`, active plans |
 | implementation/state ownership | `docs/ENGINEERING.md` | `docs/generated/route-map.md`, `docs/generated/store-authority-map.md`, `docs/generated/api-group-map.md` |
@@ -84,6 +86,7 @@ Purpose:
 - Stable agent blueprint rules go in `docs/AGENT_FACTORY.md`
 - Stable tool contract rules go in `docs/TOOL_DESIGN.md`
 - Stable runtime telemetry rules go in `docs/AGENT_OBSERVABILITY.md`
+- Stable queue/dependency routing rules go in `docs/ORCHESTRATION.md`
 - Stable platform/registry/sandbox rules go in `docs/CONTEXT_PLATFORM.md` and `docs/SANDBOX_POLICY.md`
 - Stable task routing goes in `docs/README.md`
 - Stable product behavior goes in `docs/product-specs/*.md`

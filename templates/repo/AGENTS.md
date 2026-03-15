@@ -14,17 +14,20 @@ This file defines mandatory execution rules for coding agents in `__PROJECT_NAME
 8. If the task needs measured runtime evidence or time-saved tracking, open `docs/AGENT_OBSERVABILITY.md`.
 9. If the task affects registry/API, public evaluation, or safety boundaries, open `docs/CONTEXT_PLATFORM.md` and `docs/SANDBOX_POLICY.md`.
 10. If the task affects Claude-native commands, hooks, or local risk guidance, open `docs/CLAUDE_COMPATIBILITY.md` and `.claude/README.md`.
-11. If the task involves branching, syncing, worktrees, or merge discipline, open `docs/GIT_WORKFLOW.md`.
-12. Run `git status --short --branch`.
-13. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
-14. On feature branches, create or refresh a coordination claim:
+11. If the task spans dependencies, queued handoffs, or multi-step parallel work, open `docs/ORCHESTRATION.md`.
+12. If the task involves branching, syncing, worktrees, or merge discipline, open `docs/GIT_WORKFLOW.md`.
+13. Run `git status --short --branch`.
+14. Reserve a work ID in the form `W-YYYYMMDD-HHMM-<repo>-<agent>`.
+15. On feature branches, create or refresh a coordination claim:
    - `npm run coord:claim -- --work-id "<W-ID>" --agent "<agent>" --surface "<surface>" --summary "<summary>" --path "<prefix>"`
    - do not start meaningful edits on a feature branch without at least one claimed path prefix
-15. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
-16. Run `npm run safe:status`.
-17. For non-trivial work, create a semantic checkpoint:
+16. If the work should stay visible in a queue, update the orchestration item:
+   - `npm run orch:work -- --work-id "<W-ID>" --title "<title>" --surface "<surface>" --status ready`
+17. Append a START entry in `docs/AGENT_WATCH_LOG.md`.
+18. Run `npm run safe:status`.
+19. For non-trivial work, create a semantic checkpoint:
    - `npm run ctx:checkpoint -- --work-id "<W-ID>" --surface "<surface>" --objective "<objective>"`
-18. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
+20. Work on a `codex/<task-name>` branch, not `__MAIN_BRANCH__`.
 
 ## Mandatory Validation Gate
 
@@ -40,15 +43,16 @@ If one fails, stop and fix it before push or merge.
 2. Stable truth belongs in canonical docs or enforcement scripts.
 3. Runtime memory belongs in `.agent-context/`, not in committed notes.
 4. `docs/AGENT_WATCH_LOG.md` is evidence, not the primary resume surface.
-5. Use `npm run ctx:restore -- --mode brief` first when resuming.
+5. Use `npm run ctx:resume` first when resuming, then fall back to `npm run ctx:restore -- --mode handoff` when you need the fuller transfer artifact.
 6. Keep the small map small enough that it still routes better than a broad docs dump.
 7. Use `docs/MULTI_AGENT_COORDINATION.md` when two or more agents may touch related surfaces.
-8. Use the registry manifest or query API before inventing new public discovery surfaces.
-9. Use retrieval query before full canonical scans when task intent is fuzzy.
-10. Use `docs/AGENT_FACTORY.md` before inventing a new agent prompt shape.
-11. Use `docs/TOOL_DESIGN.md` before inventing a new tool wrapper.
-12. Use `docs/AGENT_OBSERVABILITY.md` before claiming efficiency or time-saved wins.
-13. If Claude Code is in use, keep `.claude/hooks/` deterministic and keep local `CLAUDE.md` files near risky directories short and specific.
+8. Use `docs/ORCHESTRATION.md` when claim ownership alone is not enough to explain next-up work.
+9. Use the registry manifest or query API before inventing new public discovery surfaces.
+10. Use retrieval query before full canonical scans when task intent is fuzzy.
+11. Use `docs/AGENT_FACTORY.md` before inventing a new agent prompt shape.
+12. Use `docs/TOOL_DESIGN.md` before inventing a new tool wrapper.
+13. Use `docs/AGENT_OBSERVABILITY.md` before claiming efficiency or time-saved wins.
+14. If Claude Code is in use, keep `.claude/hooks/` deterministic and keep local `CLAUDE.md` files near risky directories short and specific.
 
 ## Finish Sequence
 

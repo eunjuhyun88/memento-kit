@@ -6,6 +6,7 @@ Scope:
 
 - strongest when agents share the same repository filesystem or worktree family
 - for cross-machine or cloud agents, promote the same ownership plan into tracked docs or an external coordinator and publish the registry manifest for shared discovery
+- use `docs/ORCHESTRATION.md` when the team also needs dependency queues, ready states, or handoff routing above raw path ownership
 
 ## Coordination Model
 
@@ -94,6 +95,12 @@ Do not silently continue work under another agent's stale claim.
 - `npm run coord:list`
 - `npm run coord:check`
 - `npm run coord:release`
+
+Related orchestration layer:
+
+- `npm run orch:work`
+- `npm run orch:list`
+- `npm run orch:check`
 
 ## Success Criteria
 

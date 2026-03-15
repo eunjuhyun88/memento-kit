@@ -42,7 +42,8 @@ The goal is not to read more files. The goal is to read the right files first.
 9. Agent runtime telemetry: `docs/AGENT_OBSERVABILITY.md`
 10. Open-source platform layers: `docs/CONTEXT_PLATFORM.md`, `docs/SANDBOX_POLICY.md`
 11. Parallel-agent ownership and handoff: `docs/MULTI_AGENT_COORDINATION.md`
-12. Git operating rules: `docs/GIT_WORKFLOW.md`
+12. Work dependency queue and handoff routing: `docs/ORCHESTRATION.md`
+13. Git operating rules: `docs/GIT_WORKFLOW.md`
 13. Stable canonical entry docs:
    - `docs/DESIGN.md`
    - `docs/ENGINEERING.md`
@@ -69,6 +70,7 @@ npm run safe:status
 - `npm run ctx:save`
 - `npm run ctx:checkpoint`
 - `npm run ctx:compact`
+- `npm run ctx:resume`
 - `npm run ctx:check -- --strict`
 - `npm run ctx:restore -- --mode brief`
 - `npm run ctx:restore -- --mode handoff`
@@ -78,8 +80,16 @@ npm run safe:status
 
 - `npm run coord:claim`
 - `npm run coord:list`
+- `npm run coord:list -- --json`
 - `npm run coord:check`
 - `npm run coord:release`
+
+## 3.1.1) Orchestration Commands
+
+- `npm run orch:work`
+- `npm run orch:list`
+- `npm run orch:list -- --json`
+- `npm run orch:check`
 
 ## 3.2) Git Commands
 
@@ -120,6 +130,12 @@ npm run safe:status
    - fast resume surface
 4. `handoff`
    - fuller transfer artifact for the next session or agent
+5. `resume`
+   - active-work bundle resolved from claim/work pointers plus brief/handoff/state
+6. `work item`
+   - dependency-aware queue record linked to a work ID
+7. `orchestration board`
+   - runtime-ready summary of ready, active, blocked, and handoff work
 
 Paths:
 
@@ -146,6 +162,7 @@ Project-specific truth for this kit lives in:
 - `docs/TOOL_DESIGN.md`
 - `docs/AGENT_OBSERVABILITY.md`
 - `docs/MULTI_AGENT_COORDINATION.md`
+- `docs/ORCHESTRATION.md`
 - `docs/GIT_WORKFLOW.md`
 - `docs/SANDBOX_POLICY.md`
 - `.claude/settings.json`

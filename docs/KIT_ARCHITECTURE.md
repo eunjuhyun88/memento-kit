@@ -10,6 +10,7 @@ The kit exists to turn a repository into an agent-first workspace with:
 - runtime usage telemetry
 - semantic runtime memory
 - multi-agent ownership control
+- queue-level work orchestration
 - generated navigation artifacts
 - mechanical drift detection
 - local evidence capture
@@ -95,6 +96,7 @@ Installed files:
 - `docs/AGENT_FACTORY.md`
 - `docs/AGENT_OBSERVABILITY.md`
 - `docs/MULTI_AGENT_COORDINATION.md`
+- `docs/ORCHESTRATION.md`
 - `docs/SANDBOX_POLICY.md`
 - `docs/README.md`
 - `docs/{SYSTEM_INTENT,DESIGN,ENGINEERING,PLANS,PRODUCT_SENSE,QUALITY_SCORE,RELIABILITY,SECURITY,HARNESS}.md`
@@ -120,6 +122,10 @@ Installed scripts:
 - `list-work-claims.mjs`
 - `check-agent-coordination.mjs`
 - `release-work.mjs`
+- `orchestration-lib.mjs`
+- `orchestrate-work.mjs`
+- `list-orchestration-work.mjs`
+- `check-orchestration-work.mjs`
 
 Runtime storage:
 
@@ -133,6 +139,7 @@ Runtime storage:
 - `.agent-context/harness/`
 - `.agent-context/evaluations/`
 - `.agent-context/coordination/`
+- `.agent-context/orchestration/`
 
 Purpose:
 
@@ -140,6 +147,7 @@ Purpose:
 - generate fast resume artifacts
 - separate durable documentation from per-branch runtime memory
 - make parallel ownership visible and machine-checkable
+- make work dependencies and ready queues visible without overloading the claim system
 
 ### 4. Generated Governance Layer
 

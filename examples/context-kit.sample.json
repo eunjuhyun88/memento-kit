@@ -66,6 +66,28 @@
       ".agent-context/"
     ]
   },
+  "orchestration": {
+    "enabled": true,
+    "workItemsDir": ".agent-context/orchestration/work-items",
+    "boardPath": ".agent-context/orchestration/board.md",
+    "summaryPath": ".agent-context/orchestration/summary.json",
+    "defaultStatus": "planned",
+    "readyStatuses": [
+      "ready"
+    ],
+    "activeStatuses": [
+      "active"
+    ],
+    "blockedStatuses": [
+      "blocked",
+      "handoff"
+    ],
+    "terminalStatuses": [
+      "done",
+      "abandoned"
+    ],
+    "enforceClaimSync": true
+  },
   "registry": {
     "enabled": true,
     "manifestPath": "docs/generated/context-registry.json",
@@ -125,6 +147,7 @@
       "docs/TOOL_DESIGN.md",
       "docs/AGENT_OBSERVABILITY.md",
       "docs/MULTI_AGENT_COORDINATION.md",
+      "docs/ORCHESTRATION.md",
       "docs/SANDBOX_POLICY.md",
       "docs/DESIGN.md",
       "docs/ENGINEERING.md",

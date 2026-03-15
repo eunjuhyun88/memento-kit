@@ -17,6 +17,7 @@ import {
   normalizeRepoPath,
   isFeatureBranch,
 } from './coordination-lib.mjs';
+import { syncClaimToWorkItem } from './orchestration-lib.mjs';
 
 function usage() {
   console.log('Usage: node scripts/dev/claim-work.mjs --work-id <id> --agent <name> --surface <surface> --summary <text> [--path <prefix>] [--doc <path>] [--depends-on <id>] [--lease-minutes <n>] [--status <active|blocked>]');
@@ -164,10 +165,14 @@ withCoordinationLock(rootDir, () => {
   ensureDir(branchesDir);
   writeJson(claimPath, claim);
   writeJson(branchPath, { workId: claim.workId, branch, updatedAt: timestamp });
+  const syncedWorkItem = syncClaimToWorkItem(rootDir, claim, { config });
   appendCoordinationEvent(rootDir, [timestamp, 'claim', claim.workId, branch, claim.agent, claim.surface, claim.paths.join(',') || '-']);
 
   console.log(`[coord:claim] saved: ${path.relative(rootDir, claimPath)}`);
   console.log(`[coord:claim] branch: ${branch}`);
   console.log(`[coord:claim] surface: ${claim.surface}`);
   console.log(`[coord:claim] lease expires: ${claim.leaseExpiresAt}`);
+  if (syncedWorkItem) {
+    console.log('[coord:claim] orchestration synced');
+  }
 });

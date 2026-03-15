@@ -4,10 +4,28 @@ import { currentBranch, readClaims, resolveRootDir } from './coordination-lib.mj
 const rootDir = resolveRootDir();
 const branch = currentBranch(rootDir);
 const currentOnly = process.argv.includes('--current-branch');
+const json = process.argv.includes('--json');
 const claims = readClaims(rootDir).filter((claim) => !currentOnly || claim.branch === branch);
 
 if (claims.length === 0) {
+  if (json) {
+    console.log(JSON.stringify({
+      currentBranch: branch,
+      currentOnly,
+      claims: [],
+    }, null, 2));
+    process.exit(0);
+  }
   console.log('[coord:list] no active claims');
+  process.exit(0);
+}
+
+if (json) {
+  console.log(JSON.stringify({
+    currentBranch: branch,
+    currentOnly,
+    claims,
+  }, null, 2));
   process.exit(0);
 }
 

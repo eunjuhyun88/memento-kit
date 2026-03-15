@@ -48,7 +48,10 @@ Use:
 - `npm run ctx:save`
 - `npm run ctx:checkpoint`
 - `npm run ctx:compact`
+- `npm run ctx:resume`
 - `npm run ctx:restore -- --mode brief`
+- `npm run coord:list -- --json`
+- `npm run orch:list -- --json`
 - `npm run agent:new -- --id "<agent-id>" --role "<role>" --surface "<surface>"`
 - `npm run agent:start -- --agent "<agent-id>" --surface "<surface>"`
 - `npm run agent:event -- --type doc_open --path "<repo-path>"`
@@ -64,6 +67,8 @@ Guideline:
 - use docs for stable truth
 - use runtime context for transient task state
 - keep watch log as evidence only
+- resume from `ctx:resume` first so the current claim/work pointer decides which brief and handoff matter
+- use orchestration when the team needs dependency order or a machine-readable ready queue
 
 ## Before Push
 
@@ -143,6 +148,26 @@ When multiple agents work at once:
 - each feature-branch claim should declare at least one owned path prefix
 - same-surface work must declare explicit non-overlapping `--path` boundaries
 - handoff means checkpoint + brief + `coord:release -- --status handoff`
+
+## Orchestration Workflow
+
+Use the orchestration layer when ownership is not enough and the team needs sequencing:
+
+```bash
+npm run orch:work -- \
+  --work-id "W-YYYYMMDD-HHMM-<repo>-<agent>" \
+  --title "Describe the queued work item" \
+  --surface "<surface>" \
+  --status ready
+
+npm run orch:list -- --ready-only
+npm run orch:check
+```
+
+Guideline:
+
+- `coord:*` owns lock/branch/path safety
+- `orch:*` owns dependency order, queue visibility, and handoff routing
 
 ## Harness Workflow
 

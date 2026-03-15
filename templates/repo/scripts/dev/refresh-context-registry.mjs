@@ -23,7 +23,7 @@ function relative(filePath) {
 function loadPackageScripts() {
   const pkg = readJson(path.join(rootDir, 'package.json'));
   return Object.entries(pkg.scripts ?? {})
-    .filter(([name]) => /^(docs|ctx|coord|agent|tool|harness|registry|retrieve|eval|sandbox|safe):/.test(name) || ['docs:check', 'gate:context'].includes(name))
+    .filter(([name]) => /^(docs|ctx|coord|orch|agent|tool|harness|registry|retrieve|eval|sandbox|safe):/.test(name) || ['docs:check', 'gate:context'].includes(name))
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([name, script]) => ({
       name,
@@ -46,6 +46,7 @@ function canonicalDocs() {
     ['docs/TOOL_DESIGN.md', 'tool-design', 'canonical'],
     ['docs/AGENT_OBSERVABILITY.md', 'agent-observability', 'canonical'],
     ['docs/MULTI_AGENT_COORDINATION.md', 'coordination', 'canonical'],
+    ['docs/ORCHESTRATION.md', 'orchestration', 'canonical'],
     ['docs/SANDBOX_POLICY.md', 'sandbox-policy', 'canonical'],
     ['docs/DESIGN.md', 'design-authority', 'canonical'],
     ['docs/ENGINEERING.md', 'engineering-authority', 'canonical'],
@@ -115,6 +116,7 @@ function buildManifest() {
       generatedMaps: true,
       runtimeMemory: true,
       coordination: true,
+      orchestration: true,
       benchmark: true,
       registryQuery: true,
       contextualRetrieval: true,
